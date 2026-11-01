@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Humble Subscription Hub
 
 A full-store frontend replica of `dopaminedropsbd.com`, rebranded as **Humble Subscription Hub**. Built with the real scraped catalog, images, pricing plans and variants.
@@ -80,6 +79,11 @@ node scripts/qa-flow.mjs   # cart → wishlist → promo → checkout → login 
 node scripts/qa-layout.mjs # responsive grid, carousel, drawer, detail, leaderboard checks
 ```
 
+The QA scripts use a temporary profile directory and write `qa-results.json` in the project root.
+Set `CHROME_PATH` when Chrome or Chromium is not installed in a standard location, `BASE` to test
+another running server, or `QA_OUTPUT` to choose a different results file. Ports can be overridden
+with `QA_QA_PORT`, `QA_FLOW_PORT`, and `QA_LAYOUT_PORT`.
+
 ## Structure
 
 ```
@@ -104,6 +108,3 @@ scripts/                scraper and QA scripts
 - Brand copy, contact details and navigation are in `lib/constants.ts`.
 - Products are read at build time from `data/products.json` via `lib/data.ts`.
 - Prices are server-rendered from JSON; cart and checkout totals are computed client-side.
-=======
-# humble-subscription-hub
->>>>>>> origin/main

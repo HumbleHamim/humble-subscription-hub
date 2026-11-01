@@ -1,9 +1,7 @@
 import { spawn } from 'node:child_process';
+import { getQaConfig } from './qa-config.mjs';
 
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const PORT = 9334;
-const BASE = process.env.BASE ?? 'http://localhost:3000';
-const userDataDir = 'C:/Users/GIGABYTE/AppData/Local/Temp/opencode/chrome-flow';
+const { chromePath: CHROME, port: PORT, base: BASE, userDataDir } = getQaConfig('flow', 9334);
 
 const chrome = spawn(CHROME, [
   '--headless=new',
