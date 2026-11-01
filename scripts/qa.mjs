@@ -1,10 +1,8 @@
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import { getQaConfig } from './qa-config.mjs';
 
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const PORT = 9333;
-const BASE = process.env.BASE ?? 'http://localhost:3000';
-const userDataDir = 'C:/Users/GIGABYTE/AppData/Local/Temp/opencode/chrome-qa';
+const { chromePath: CHROME, port: PORT, base: BASE, userDataDir, resultsPath } = getQaConfig('qa', 9333);
 
 const pages = [
   ['home', '/'],
@@ -215,7 +213,7 @@ await fetch(`http://127.0.0.1:${PORT}/json/close/${targetId}`);
 chrome.kill();
 
 fs.writeFileSync(
-  'C:/Users/GIGABYTE/AppData/Local/Temp/opencode/qa-results.json',
+  resultsPath,
   JSON.stringify(results, null, 2),
 );
 
