@@ -3,28 +3,36 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
-import { useStore } from '@/components/store/StoreProvider';
+import { authErrorMessage, useStore } from '@/components/store/StoreProvider';
 import {
   AuthButton,
-  AuthDemoNote,
   AuthField,
+  AuthSetupNote,
   AuthShell,
 } from '@/components/auth/AuthShell';
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { login } = useStore();
+  const { register, firebaseConfigured } = useStore();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    setError('');
     setLoading(true);
-    login({ name: name.trim() || 'Humble Customer', email: email.trim(), phone: phone.trim() });
-    window.setTimeout(() => router.push('/profile'), 300);
+    try {
+      await register(email, password, { name, phone });
+      router.push('/profile');
+    } catch (nextError) {
+      setError(authErrorMessage(nextError));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,9 +83,10 @@ export default function RegisterPage() {
           type="password"
           value={password}
           onChange={setPassword}
-          placeholder="At least 8 characters"
+          placeholder="At least 6 characters"
           autoComplete="new-password"
         />
+        {error ? <p className="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">{error}</p> : null}
         <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-relaxed text-gray-500">
           <input
             type="checkbox"
@@ -98,7 +107,7 @@ export default function RegisterPage() {
         </label>
         <AuthButton loading={loading}>Create Account</AuthButton>
       </form>
-      <AuthDemoNote />
+      <AuthSetupNote configured={firebaseConfigured} />
     </AuthShell>
   );
 }

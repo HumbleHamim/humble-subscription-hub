@@ -3,32 +3,34 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
-import { useStore } from '@/components/store/StoreProvider';
+import { authErrorMessage, useStore } from '@/components/store/StoreProvider';
 import {
   AuthButton,
-  AuthDemoNote,
+  AuthSetupNote,
   AuthField,
   AuthShell,
 } from '@/components/auth/AuthShell';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useStore();
+  const { signIn, firebaseConfigured } = useStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    setError('');
     setLoading(true);
-    const name = email.split('@')[0].replace(/[._-]+/g, ' ');
-    const pretty = name
-      .split(' ')
-      .filter(Boolean)
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-    login({ name: pretty || 'Humble Customer', email });
-    window.setTimeout(() => router.push('/profile'), 300);
+    try {
+      await signIn(email, password);
+      router.push('/profile');
+    } catch (nextError) {
+      setError(authErrorMessage(nextError));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,8 +64,8 @@ export default function LoginPage() {
           onChange={setPassword}
           placeholder="••••••••"
           autoComplete="current-password"
-          hint="Demo mode — any password works."
         />
+        {error ? <p className="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">{error}</p> : null}
         <div className="flex items-center justify-between">
           <label className="flex cursor-pointer items-center gap-2 text-xs font-medium text-gray-500">
             <input
@@ -79,7 +81,7 @@ export default function LoginPage() {
         </div>
         <AuthButton loading={loading}>Sign In</AuthButton>
       </form>
-      <AuthDemoNote />
+      <AuthSetupNote configured={firebaseConfigured} />
     </AuthShell>
   );
 }
