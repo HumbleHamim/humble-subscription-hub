@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Humble Subscription Hub
 
 A full-store frontend replica of `dopaminedropsbd.com`, rebranded as **Humble Subscription Hub**. Built with the real scraped catalog, images, pricing plans and variants.
@@ -103,3 +104,6 @@ scripts/                scraper and QA scripts
 - Brand copy, contact details and navigation are in `lib/constants.ts`.
 - Products are read at build time from `data/products.json` via `lib/data.ts`.
 - Prices are server-rendered from JSON; cart and checkout totals are computed client-side.
+=======
+# humble-subscription-hub
+>>>>>>> origin/main
