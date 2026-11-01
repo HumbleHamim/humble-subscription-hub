@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@theme {
+  --color-theme-primary: #e7933d;
+  --color-theme-primary-dark: #c67625;
+  --color-navy: #1b253c;
+  --color-navy-deep: #0d1627;
+  --color-navy-soft: #2a3a5c;
+  --color-muted: #8e9bb4;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: rgb(229 231 235);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #ffffff;
+    color: #1b253c;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: #e7933d;
+    color: #fff;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .site-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  .glass-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(240, 246, 255, 0.88) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .header-blur {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(40px) saturate(1.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-glow {
+    background:
+      radial-gradient(circle at 8% 0%, rgba(231, 147, 61, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 92% 100%, rgba(27, 37, 60, 0.12) 0%, transparent 45%),
+      linear-gradient(180deg, #f5f5f7 0%, #ebebf0 55%, #f3f3f6 100%);
+  }
+
+  .carousel-track {
+    --row-cols: 2.25;
+    --row-gap: 0.75rem;
+    display: flex;
+    gap: var(--row-gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-top: 0.5rem;
+    padding-bottom: 1.25rem;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+  }
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-item {
+    display: flex;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: calc((100% - (var(--row-cols) - 1) * var(--row-gap)) / var(--row-cols));
+  }
+
+}
+
+@layer utilities {
+  .wrap-break-word {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.45s ease-out both;
+  }
+
+  .animate-toast-in {
+    animation: toast-in 0.25s ease-out both;
+  }
+
+  .animate-drawer-in {
+    animation: drawer-in 0.28s ease-out both;
+  }
+
+  .animate-pop {
+    animation: pop 0.2s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.94);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-inline: 1.5rem;
+  }
+
+  .carousel-track {
+    --row-cols: 3.25;
+    --row-gap: 1rem;
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+    scroll-padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-track {
+    --row-cols: 4.25;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-inline: 2.5rem;
+  }
+
+  .carousel-track {
+    --row-cols: 4;
+    margin-inline: -0.5rem;
+    padding-inline: 0.5rem;
+    scroll-padding-inline: 0.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-container {
+    width: 80%;
+    max-width: 1600px;
+    padding-inline: 0;
+  }
+
+  .carousel-track {
+    --row-cols: 5;
+    --row-gap: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
