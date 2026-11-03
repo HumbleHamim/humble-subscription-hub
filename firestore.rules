@@ -2,12 +2,26 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // An admin is any account that has a document at admins/{uid}.
+    // Those documents can only be created from the Firebase console.
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
     match /users/{userId} {
-      allow read, create, update: if request.auth != null && request.auth.uid == userId;
+      allow read: if request.auth != null && (request.auth.uid == userId || isAdmin());
+      allow create, update: if request.auth != null && request.auth.uid == userId;
       allow delete: if false;
     }
 
-    // Catalog, orders, and admin rules will be added in their dedicated stages.
+    // Catalog, orders and content rules are added in their own steps.
     match /{document=**} {
       allow read, write: if false;
     }
