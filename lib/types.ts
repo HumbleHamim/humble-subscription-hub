@@ -90,6 +90,7 @@ export type Order = {
 };
 
 export type User = {
+  uid?: string;
   name: string;
   email: string;
   phone?: string;
