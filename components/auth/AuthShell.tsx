@@ -139,13 +139,14 @@ export function AuthButton({ children, loading }: { children: ReactNode; loading
   );
 }
 
-export function AuthDemoNote() {
+export function AuthSetupNote({ configured }: { configured: boolean }) {
   return (
     <div className="mt-5 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3">
       <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
       <p className="text-[11px] leading-relaxed text-amber-800">
-        This is a demo storefront. Any details you enter are stored only in your browser — no real
-        account is created.
+        {configured
+          ? 'Your account is secured by Firebase Authentication. Your profile is stored in your Firebase project.'
+          : 'Firebase is not configured for this environment yet. Add the local Firebase values from docs/firebase-setup.md before creating an account.'}
       </p>
     </div>
   );

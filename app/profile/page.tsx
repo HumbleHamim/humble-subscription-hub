@@ -21,7 +21,7 @@ const tabs = ['Orders', 'Wishlist', 'Account'] as const;
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { user, orders, wishlist, hydrated, logout } = useStore();
+  const { user, orders, wishlist, hydrated, authReady, logout } = useStore();
   const [tab, setTab] = useState<(typeof tabs)[number]>('Orders');
 
   const savedProducts = products.filter((product) => wishlist.includes(product.slug));
@@ -31,7 +31,7 @@ export default function ProfilePage() {
     return Math.round(spent / 10) + orders.length * 25;
   }, [orders]);
 
-  if (!hydrated) {
+  if (!hydrated || !authReady) {
     return (
       <div className="site-container py-20">
         <div className="mx-auto h-72 max-w-4xl animate-pulse rounded-2xl bg-gray-100" />
@@ -281,8 +281,8 @@ export default function ProfilePage() {
                   </div>
                 </dl>
                 <p className="mt-4 rounded-xl bg-gray-50 p-3 text-[11px] leading-relaxed text-gray-500">
-                  Demo profile — details live in this browser only. Clearing site data removes
-                  them.
+                  Your account profile is synchronized with the Firebase project connected to this
+                  environment. Cart and order history remain local until the commerce data stage.
                 </p>
               </div>
 

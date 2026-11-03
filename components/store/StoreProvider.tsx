@@ -10,7 +10,18 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 import type { CartItem, Order, User } from '@/lib/types';
+import { firebaseAuth, isFirebaseConfigured } from '@/lib/firebase';
+import {
+  authErrorMessage,
+  getOrCreateProfile,
+  register as firebaseRegister,
+  saveProfile,
+  signIn as firebaseSignIn,
+  signOut as firebaseSignOut,
+  type ProfileInput,
+} from '@/lib/firebase-auth';
 
 type Toast = { id: number; message: string; tone: 'success' | 'error' | 'info' };
 
@@ -23,6 +34,8 @@ type CheckoutDetails = {
 
 type StoreContextValue = {
   hydrated: boolean;
+  authReady: boolean;
+  firebaseConfigured: boolean;
   cart: CartItem[];
   wishlist: string[];
   user: User | null;
@@ -35,8 +48,10 @@ type StoreContextValue = {
   clearCart: () => void;
   toggleWishlist: (slug: string) => void;
   isWishlisted: (slug: string) => boolean;
-  login: (user: User) => void;
-  logout: () => void;
+  signIn: (email: string, password: string) => Promise<User>;
+  register: (email: string, password: string, input: ProfileInput) => Promise<User>;
+  saveProfile: (input: ProfileInput) => Promise<User>;
+  logout: () => Promise<void>;
   placeOrder: (details: CheckoutDetails) => Order;
   notify: (message: string, tone?: Toast['tone']) => void;
 };
@@ -46,7 +61,6 @@ const StoreContext = createContext<StoreContextValue | null>(null);
 const STORAGE = {
   cart: 'humble.cart.v1',
   wishlist: 'humble.wishlist.v1',
-  user: 'humble.user.v1',
   orders: 'humble.orders.v1',
 };
 
@@ -62,6 +76,7 @@ function readJSON<T>(key: string, fallback: T): T {
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
+  const [authReady, setAuthReady] = useState(!isFirebaseConfigured);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [user, setUser] = useState<User | null>(null);
@@ -69,13 +84,42 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const toastId = useRef(0);
 
+  const notify = useCallback((message: string, tone: Toast['tone'] = 'success') => {
+    const id = ++toastId.current;
+    setToasts((current) => [...current.slice(-2), { id, message, tone }]);
+    window.setTimeout(() => {
+      setToasts((current) => current.filter((toast) => toast.id !== id));
+    }, 2600);
+  }, []);
+
   useEffect(() => {
     setCart(readJSON<CartItem[]>(STORAGE.cart, []));
     setWishlist(readJSON<string[]>(STORAGE.wishlist, []));
-    setUser(readJSON<User | null>(STORAGE.user, null));
     setOrders(readJSON<Order[]>(STORAGE.orders, []));
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (!isFirebaseConfigured || !firebaseAuth) {
+      setAuthReady(true);
+      return;
+    }
+
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (account) => {
+      if (!account) {
+        setUser(null);
+        setAuthReady(true);
+        return;
+      }
+
+      void getOrCreateProfile(account)
+        .then((profile) => setUser(profile))
+        .catch(() => notify('We could not load your profile. Please try again.', 'error'))
+        .finally(() => setAuthReady(true));
+    });
+
+    return unsubscribe;
+  }, [notify]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -89,21 +133,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!hydrated) return;
-    window.localStorage.setItem(STORAGE.user, JSON.stringify(user));
-  }, [user, hydrated]);
-
-  useEffect(() => {
-    if (!hydrated) return;
     window.localStorage.setItem(STORAGE.orders, JSON.stringify(orders));
   }, [orders, hydrated]);
-
-  const notify = useCallback((message: string, tone: Toast['tone'] = 'success') => {
-    const id = ++toastId.current;
-    setToasts((current) => [...current.slice(-2), { id, message, tone }]);
-    window.setTimeout(() => {
-      setToasts((current) => current.filter((toast) => toast.id !== id));
-    }, 2600);
-  }, []);
 
   const addToCart = useCallback<StoreContextValue['addToCart']>((item) => {
     const quantity = Math.max(1, item.quantity ?? 1);
@@ -147,12 +178,30 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const isWishlisted = useCallback((slug: string) => wishlist.includes(slug), [wishlist]);
 
-  const login = useCallback((nextUser: User) => {
+  const signIn = useCallback<StoreContextValue['signIn']>(async (email, password) => {
+    const nextUser = await firebaseSignIn(email, password);
     setUser(nextUser);
     notify(`Welcome back, ${nextUser.name.split(' ')[0]}!`);
+    return nextUser;
   }, [notify]);
 
-  const logout = useCallback(() => {
+  const register = useCallback<StoreContextValue['register']>(async (email, password, input) => {
+    const nextUser = await firebaseRegister(email, password, input);
+    setUser(nextUser);
+    notify(`Welcome to Humble, ${nextUser.name.split(' ')[0]}!`);
+    return nextUser;
+  }, [notify]);
+
+  const updateProfile = useCallback<StoreContextValue['saveProfile']>(async (input) => {
+    if (!firebaseAuth?.currentUser) throw new Error('You must be signed in to update your profile.');
+    const nextUser = await saveProfile(firebaseAuth.currentUser, input);
+    setUser(nextUser);
+    notify('Profile updated');
+    return nextUser;
+  }, [notify]);
+
+  const logout = useCallback(async () => {
+    if (isFirebaseConfigured) await firebaseSignOut();
     setUser(null);
     notify('Signed out', 'info');
   }, [notify]);
@@ -189,6 +238,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const value = useMemo<StoreContextValue>(
     () => ({
       hydrated,
+      authReady,
+      firebaseConfigured: isFirebaseConfigured,
       cart,
       wishlist,
       user,
@@ -201,13 +252,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       clearCart,
       toggleWishlist,
       isWishlisted,
-      login,
+      signIn,
+      register,
+      saveProfile: updateProfile,
       logout,
       placeOrder,
       notify,
     }),
     [
       hydrated,
+      authReady,
       cart,
       wishlist,
       user,
@@ -220,7 +274,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       clearCart,
       toggleWishlist,
       isWishlisted,
-      login,
+      signIn,
+      register,
+      updateProfile,
       logout,
       placeOrder,
       notify,
@@ -261,3 +317,5 @@ export function useStore() {
   if (!context) throw new Error('useStore must be used inside StoreProvider');
   return context;
 }
+
+export { authErrorMessage };
