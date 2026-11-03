@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, SlidersHorizontal, Search, X } from 'lucide-react';
 import type { Category, Product } from '@/lib/types';
@@ -71,6 +71,12 @@ export function CatalogPage({
   hideCategoryFilter?: boolean;
 }) {
   const [search, setSearch] = useState(initialSearch);
+
+  // Static export: read ?q= in the browser instead of on the server.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) setSearch(q);
+  }, []);
   const [category, setCategory] = useState(initialCategory);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');

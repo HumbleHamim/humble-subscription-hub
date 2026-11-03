@@ -29,13 +29,10 @@ export async function generateMetadata({
 
 export default async function CategoryPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ q?: string }>;
 }) {
   const { slug } = await params;
-  const { q } = await searchParams;
   const category = getCategory(slug);
   if (!category) notFound();
 
@@ -56,7 +53,6 @@ export default async function CategoryPage({
       }
       products={products}
       categories={visibleCategories}
-      initialSearch={q ?? ''}
       initialCategory={slug}
       allLabel={isSubscriptionCategory ? 'All Subscriptions' : 'All Products'}
       hideCategoryFilter={isSubscriptionCategory}
