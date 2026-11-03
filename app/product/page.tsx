@@ -9,11 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPage({
-  searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
 }) {
-  const { q } = await searchParams;
   const products = getPhysicalProducts();
   const physicalCategories = categories.filter((category) => category.slug !== 'subscriptions');
 
@@ -23,7 +20,6 @@ export default async function ProductsPage({
       subtitle="Browse our catalog of physical goods curated for you."
       products={products}
       categories={physicalCategories}
-      initialSearch={q ?? ''}
       allLabel="All Products"
     />
   );
