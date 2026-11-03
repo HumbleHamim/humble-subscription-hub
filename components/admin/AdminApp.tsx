@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useStore } from '@/components/store/StoreProvider';
 import { checkIsAdmin, listCustomers, type Customer } from '@/lib/admin';
+import { ProductsAdmin } from '@/components/admin/ProductsAdmin';
 
 type Status = 'loading' | 'signed-out' | 'denied' | 'ok' | 'error';
 
@@ -207,7 +208,9 @@ export function AdminApp() {
           </section>
         )}
 
-        {(tab === 'Products' || tab === 'Orders' || tab === 'Content') && (
+        {tab === 'Products' && <ProductsAdmin />}
+
+        {(tab === 'Orders' || tab === 'Content') && (
           <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
             <h2 className="text-lg font-black text-[#1b253c]">{tab}</h2>
             <p className="mt-1 text-sm text-slate-400">This section is built in a later step.</p>
