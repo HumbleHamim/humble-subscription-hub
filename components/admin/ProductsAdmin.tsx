@@ -40,7 +40,7 @@ type Form = {
 };
 
 const inputClass =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-[#e7933d]';
+  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-[#2f7d57]';
 
 function emptyForm(): Form {
   return {
@@ -311,7 +311,7 @@ export function ProductsAdmin() {
     <section>
       <PublishPanel />
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-black text-[#1b253c]">Products</h2>
+        <h2 className="text-lg font-black text-[#1b1e1d]">Products</h2>
         <div className="flex gap-2">
           <button
             type="button"
@@ -324,7 +324,7 @@ export function ProductsAdmin() {
           <button
             type="button"
             onClick={openNew}
-            className="rounded-full bg-[#e7933d] px-5 py-2 text-sm font-bold text-white"
+            className="rounded-full bg-[#2f7d57] px-5 py-2 text-sm font-bold text-white"
           >
             + Add product
           </button>
@@ -345,7 +345,7 @@ export function ProductsAdmin() {
         <p className="text-sm text-slate-400">Loading…</p>
       ) : items.length === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-          <p className="font-bold text-[#1b253c]">No products yet</p>
+          <p className="font-bold text-[#1b1e1d]">No products yet</p>
           <p className="mt-1 text-sm text-slate-400">Tap “Add product” to create your first one.</p>
         </div>
       ) : (
@@ -359,7 +359,7 @@ export function ProductsAdmin() {
                 className="size-16 shrink-0 rounded-lg bg-slate-100 object-cover"
               />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-bold text-[#1b253c]">{product.name}</p>
+                <p className="truncate text-sm font-bold text-[#1b1e1d]">{product.name}</p>
                 <p className="text-xs text-slate-500">
                   {product.category.name} · ৳{product.price} · stock {product.stock}
                   {product.active ? '' : ' · hidden'}
@@ -390,7 +390,7 @@ export function ProductsAdmin() {
         <div className="fixed inset-0 z-[110] overflow-y-auto bg-white">
           <div className="mx-auto max-w-2xl px-4 pb-28 pt-4">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-black text-[#1b253c]">
+              <h3 className="text-lg font-black text-[#1b1e1d]">
                 {form.isNew ? 'Add product' : 'Edit product'}
               </h3>
               <button
@@ -416,7 +416,7 @@ export function ProductsAdmin() {
                       onClick={() => update({ isPhysical: option.value, categorySlug: '' })}
                       className={`flex-1 rounded-lg border px-3 py-2.5 text-sm font-bold ${
                         form.isPhysical === option.value
-                          ? 'border-[#e7933d] bg-orange-50 text-[#c67625]'
+                          ? 'border-[#2f7d57] bg-orange-50 text-[#256646]'
                           : 'border-slate-300 text-slate-500'
                       } disabled:opacity-60`}
                     >
@@ -532,7 +532,7 @@ export function ProductsAdmin() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={src} alt="" className="size-full object-cover" />
                       {index === 0 ? (
-                        <span className="absolute left-1 top-1 rounded bg-[#e7933d] px-1.5 py-0.5 text-[10px] font-bold text-white">
+                        <span className="absolute left-1 top-1 rounded bg-[#2f7d57] px-1.5 py-0.5 text-[10px] font-bold text-white">
                           Main
                         </span>
                       ) : null}
@@ -626,7 +626,7 @@ export function ProductsAdmin() {
                 type="button"
                 disabled={saving}
                 onClick={() => void onSave()}
-                className="flex-1 rounded-full bg-[#e7933d] py-3 text-sm font-bold text-white disabled:opacity-60"
+                className="flex-1 rounded-full bg-[#2f7d57] py-3 text-sm font-bold text-white disabled:opacity-60"
               >
                 {saving ? 'Saving…' : 'Save product'}
               </button>

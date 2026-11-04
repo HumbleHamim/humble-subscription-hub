@@ -76,7 +76,7 @@ export function PublishPanel() {
     <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-sm font-black text-[#1b253c]">Publish to website</p>
+          <p className="text-sm font-black text-[#1b1e1d]">Publish to website</p>
           <p className="text-xs text-slate-500">
             Changes you make here show on the store after you publish (about 2 minutes).
             {lastPublish ? ` Last started at ${lastPublish}.` : ''}
@@ -88,7 +88,7 @@ export function PublishPanel() {
               type="button"
               disabled={busy}
               onClick={() => void onPublish()}
-              className="rounded-full bg-[#1b253c] px-5 py-2 text-sm font-bold text-white disabled:opacity-50"
+              className="rounded-full bg-[#1b1e1d] px-5 py-2 text-sm font-bold text-white disabled:opacity-50"
             >
               {busy ? 'Working…' : 'Publish to website'}
             </button>
@@ -113,14 +113,14 @@ export function PublishPanel() {
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
             placeholder="https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/…"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-[#e7933d]"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-[#2f7d57]"
           />
           <div className="flex gap-2">
             <button
               type="button"
               disabled={busy}
               onClick={() => void onSaveHook()}
-              className="rounded-full bg-[#e7933d] px-5 py-2 text-sm font-bold text-white disabled:opacity-50"
+              className="rounded-full bg-[#2f7d57] px-5 py-2 text-sm font-bold text-white disabled:opacity-50"
             >
               Save link
             </button>

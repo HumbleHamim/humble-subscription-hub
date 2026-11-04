@@ -31,11 +31,6 @@ export function AnnouncementBar() {
         </button>
         <div
           className="relative flex min-h-[20px] flex-1 items-center justify-center overflow-hidden"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
-            WebkitMaskImage:
-              'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
-          }}
         >
           <div
             key={index}

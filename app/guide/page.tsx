@@ -75,10 +75,10 @@ export default function GuidePage() {
             key={step.title}
             className="rounded-2xl border border-gray-100 bg-gray-50/70 p-4"
           >
-            <span className="grid size-9 place-items-center rounded-full bg-[#1b253c] text-xs font-black text-white">
+            <span className="grid size-9 place-items-center rounded-full bg-[#1b1e1d] text-xs font-black text-white">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 className="mt-3 text-sm font-black text-[#1b253c]">{step.title}</h3>
+            <h3 className="mt-3 text-sm font-black text-[#1b1e1d]">{step.title}</h3>
             <p className="mt-1 text-xs leading-relaxed text-gray-500">{step.text}</p>
           </div>
         ))}

@@ -29,7 +29,7 @@ function CategoryButton({
         className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
           active
             ? 'bg-theme-primary text-white shadow-sm'
-            : 'border border-gray-200 bg-white text-[#1b253c] hover:border-gray-300'
+            : 'border border-gray-200 bg-white text-[#1b1e1d] hover:border-gray-300'
         }`}
       >
         {label} ({count})
@@ -43,7 +43,7 @@ function CategoryButton({
       className={`rounded-lg px-4 py-2 text-left text-xs font-bold transition-all ${
         active
           ? 'bg-theme-primary text-white shadow-sm'
-          : 'bg-gray-50 text-[#1b253c] hover:bg-gray-100'
+          : 'bg-gray-50 text-[#1b1e1d] hover:bg-gray-100'
       }`}
     >
       {label} ({count})
@@ -129,7 +129,7 @@ export function CatalogPage({
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
-      <div className="hidden bg-gradient-to-r from-[#1b253c] to-[#2a3a5c] py-12 text-white md:block md:py-16">
+      <div className="hidden bg-[#1b1e1d] py-12 text-white md:block md:py-16">
         <div className="site-container space-y-3 text-center">
           <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">{title}</h1>
           <p className="mx-auto max-w-xl text-sm font-medium text-gray-300 md:text-base">
@@ -142,7 +142,7 @@ export function CatalogPage({
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[14rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-8">
           <div className="hidden space-y-6 lg:block">
             <div className="space-y-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-              <h3 className="text-xs font-black uppercase tracking-wider text-[#1b253c]">
+              <h3 className="text-xs font-black uppercase tracking-wider text-[#1b1e1d]">
                 Search Catalog
               </h3>
               <div className="relative">
@@ -151,14 +151,14 @@ export function CatalogPage({
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="What are you looking for?"
-                  className="h-11 w-full rounded-lg border border-gray-200 bg-gray-50 pl-10 pr-4 text-sm text-[#1b253c] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
+                  className="h-11 w-full rounded-lg border border-gray-200 bg-gray-50 pl-10 pr-4 text-sm text-[#1b1e1d] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
                 />
                 <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" strokeWidth={2.5} />
               </div>
             </div>
 
             <div className="space-y-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-              <h3 className="text-xs font-black uppercase tracking-wider text-[#1b253c]">
+              <h3 className="text-xs font-black uppercase tracking-wider text-[#1b1e1d]">
                 Price Range
               </h3>
               <div className="flex items-center gap-2">
@@ -168,7 +168,7 @@ export function CatalogPage({
                   value={minPrice}
                   onChange={(event) => setMinPrice(event.target.value)}
                   placeholder="Min"
-                  className="h-10 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 text-sm text-[#1b253c] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
+                  className="h-10 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 text-sm text-[#1b1e1d] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
                 />
                 <span className="shrink-0 text-xs font-bold text-gray-400">—</span>
                 <input
@@ -177,14 +177,14 @@ export function CatalogPage({
                   value={maxPrice}
                   onChange={(event) => setMaxPrice(event.target.value)}
                   placeholder="Max"
-                  className="h-10 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 text-sm text-[#1b253c] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
+                  className="h-10 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 text-sm text-[#1b1e1d] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
                 />
               </div>
             </div>
 
             {!hideCategoryFilter ? (
               <div className="space-y-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-                <h3 className="text-xs font-black uppercase tracking-wider text-[#1b253c]">
+                <h3 className="text-xs font-black uppercase tracking-wider text-[#1b1e1d]">
                   Categories
                 </h3>
                 <div className="flex flex-wrap gap-2 lg:flex-col">
@@ -210,14 +210,14 @@ export function CatalogPage({
 
           <div className="min-w-0 space-y-4 lg:space-y-6">
             <div className="space-y-3 lg:hidden">
-              <h1 className="text-xl font-black uppercase tracking-tight text-[#1b253c]">{title}</h1>
+              <h1 className="text-xl font-black uppercase tracking-tight text-[#1b1e1d]">{title}</h1>
               <div className="relative">
                 <input
                   type="search"
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search..."
-                  className="h-10 w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 text-sm text-[#1b253c] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
+                  className="h-10 w-full rounded-lg border border-gray-200 bg-white pl-9 pr-3 text-sm text-[#1b1e1d] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
                 />
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" strokeWidth={2.5} />
               </div>
@@ -245,7 +245,7 @@ export function CatalogPage({
               <button
                 type="button"
                 onClick={() => setMobileFilters((open) => !open)}
-                className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 text-xs font-bold text-[#1b253c]"
+                className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 text-xs font-bold text-[#1b1e1d]"
               >
                 <SlidersHorizontal className="h-3.5 w-3.5" />
                 Price
@@ -292,14 +292,14 @@ export function CatalogPage({
                 <span className="hidden sm:inline"> items</span>
               </div>
               <div className="flex shrink-0 items-center gap-2">
-                <span className="hidden shrink-0 text-xs font-bold text-[#1b253c] sm:inline">
+                <span className="hidden shrink-0 text-xs font-bold text-[#1b1e1d] sm:inline">
                   Sort By:
                 </span>
                 <select
                   value={sort}
                   onChange={(event) => setSort(event.target.value as SortValue)}
                   aria-label="Sort products"
-                  className="h-9 w-40 rounded-lg border border-gray-200 bg-gray-50 px-3 text-xs font-bold text-[#1b253c] outline-none transition-all focus:border-theme-primary sm:w-48"
+                  className="h-9 w-40 rounded-lg border border-gray-200 bg-gray-50 px-3 text-xs font-bold text-[#1b1e1d] outline-none transition-all focus:border-theme-primary sm:w-48"
                 >
                   <option value="newest">Newest Arrivals</option>
                   <option value="price-low">Price: Low to High</option>
@@ -320,7 +320,7 @@ export function CatalogPage({
                 <div className="mx-auto mb-4 grid size-14 place-items-center rounded-full bg-gray-100 text-gray-300">
                   <Search className="h-6 w-6" />
                 </div>
-                <h2 className="text-lg font-black text-[#1b253c]">No products found</h2>
+                <h2 className="text-lg font-black text-[#1b1e1d]">No products found</h2>
                 <p className="mt-1 text-sm text-gray-400">
                   Try a different search term or widen your price range.
                 </p>

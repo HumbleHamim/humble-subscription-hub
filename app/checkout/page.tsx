@@ -36,7 +36,7 @@ const districts = [
 const payments = [
   { id: 'bkash', label: 'bKash', hint: 'Send Money', accent: 'text-[#e2136e]' },
   { id: 'nagad', label: 'Nagad', hint: 'Send Money', accent: 'text-[#ec1c24]' },
-  { id: 'cod', label: 'Cash on Delivery', hint: 'Pay when it arrives', accent: 'text-[#1b253c]' },
+  { id: 'cod', label: 'Cash on Delivery', hint: 'Pay when it arrives', accent: 'text-[#1b1e1d]' },
 ];
 
 export default function CheckoutPage() {
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
             <div className="mx-auto mb-5 grid size-20 place-items-center rounded-full bg-green-50 text-green-500">
               <CheckCircle2 className="h-10 w-10" strokeWidth={1.8} />
             </div>
-            <h1 className="text-2xl font-black text-[#1b253c] md:text-3xl">Order Placed!</h1>
+            <h1 className="text-2xl font-black text-[#1b1e1d] md:text-3xl">Order Placed!</h1>
             <p className="mt-2 text-sm leading-relaxed text-gray-500">
               Thank you, {order.customer.name.split(' ')[0]}. We have received your order and our
               team will contact you on WhatsApp shortly.
@@ -129,20 +129,20 @@ export default function CheckoutPage() {
             <div className="mt-6 space-y-2 rounded-2xl bg-gray-50 p-5 text-left text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Order ID</span>
-                <span className="font-black text-[#1b253c]">{order.id}</span>
+                <span className="font-black text-[#1b1e1d]">{order.id}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Payment</span>
-                <span className="font-bold text-[#1b253c]">{order.payment}</span>
+                <span className="font-bold text-[#1b1e1d]">{order.payment}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Items</span>
-                <span className="font-bold text-[#1b253c]">
+                <span className="font-bold text-[#1b1e1d]">
                   {order.items.reduce((sum, item) => sum + item.quantity, 0)}
                 </span>
               </div>
               <div className="flex items-center justify-between border-t border-dashed border-gray-200 pt-2">
-                <span className="font-black uppercase tracking-wider text-[#1b253c]">Total</span>
+                <span className="font-black uppercase tracking-wider text-[#1b1e1d]">Total</span>
                 <span className="text-xl font-black text-theme-primary">{formatPrice(order.total)}</span>
               </div>
             </div>
@@ -155,7 +155,7 @@ export default function CheckoutPage() {
               </Link>
               <Link
                 href="/profile"
-                className="flex-1 rounded-xl border-2 border-[#1b253c] px-5 py-3.5 text-sm font-extrabold uppercase tracking-wider text-[#1b253c] transition-colors hover:bg-[#1b253c] hover:text-white"
+                className="flex-1 rounded-xl border-2 border-[#1b1e1d] px-5 py-3.5 text-sm font-extrabold uppercase tracking-wider text-[#1b1e1d] transition-colors hover:bg-[#1b1e1d] hover:text-white"
               >
                 View Orders
               </Link>
@@ -194,7 +194,7 @@ export default function CheckoutPage() {
           <ArrowLeft className="h-4 w-4" /> Back to cart
         </Link>
         <div className="mb-6">
-          <h1 className="text-2xl font-black tracking-tight text-[#1b253c] md:text-3xl">Checkout</h1>
+          <h1 className="text-2xl font-black tracking-tight text-[#1b1e1d] md:text-3xl">Checkout</h1>
           <p className="mt-1 text-sm text-gray-500">
             Complete your details and choose how you want to pay.
           </p>
@@ -207,13 +207,13 @@ export default function CheckoutPage() {
                 <span className="grid size-8 place-items-center rounded-lg bg-theme-primary/10 text-theme-primary">
                   <Phone className="h-4 w-4" />
                 </span>
-                <h2 className="text-sm font-black uppercase tracking-wider text-[#1b253c]">
+                <h2 className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                   Contact Details
                 </h2>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="name" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     Full name *
                   </label>
                   <input
@@ -226,7 +226,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="phone" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     Phone number *
                   </label>
                   <input
@@ -240,7 +240,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="email" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="email" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     Email address
                   </label>
                   <input
@@ -260,13 +260,13 @@ export default function CheckoutPage() {
                 <span className="grid size-8 place-items-center rounded-lg bg-theme-primary/10 text-theme-primary">
                   <MapPin className="h-4 w-4" />
                 </span>
-                <h2 className="text-sm font-black uppercase tracking-wider text-[#1b253c]">
+                <h2 className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                   Delivery Address
                 </h2>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="district" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="district" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     District *
                   </label>
                   <select
@@ -284,7 +284,7 @@ export default function CheckoutPage() {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="city" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="city" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     City / Area *
                   </label>
                   <input
@@ -297,7 +297,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="address" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="address" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     Full address *
                   </label>
                   <input
@@ -310,7 +310,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="note" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                  <label htmlFor="note" className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
                     Order note (optional)
                   </label>
                   <textarea
@@ -330,7 +330,7 @@ export default function CheckoutPage() {
                 <span className="grid size-8 place-items-center rounded-lg bg-theme-primary/10 text-theme-primary">
                   <CreditCard className="h-4 w-4" />
                 </span>
-                <h2 className="text-sm font-black uppercase tracking-wider text-[#1b253c]">
+                <h2 className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                   Payment Method
                 </h2>
               </div>
@@ -381,7 +381,7 @@ export default function CheckoutPage() {
           </div>
 
           <aside className="h-fit rounded-2xl border border-gray-100 bg-white p-5 shadow-sm lg:sticky lg:top-24">
-            <h2 className="text-sm font-black uppercase tracking-wider text-[#1b253c]">
+            <h2 className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
               Your Order
             </h2>
             <div className="mt-4 max-h-64 space-y-3 overflow-y-auto pr-1">
@@ -389,19 +389,19 @@ export default function CheckoutPage() {
                 <div key={item.key} className="flex gap-2.5">
                   <div className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-gray-50">
                     <img src={item.image} alt="" className="size-full object-cover" />
-                    <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-[#1b253c] text-[9px] font-black text-white">
+                    <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-[#1b1e1d] text-[9px] font-black text-white">
                       {item.quantity}
                     </span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="line-clamp-2 text-[11px] font-bold leading-tight text-[#1b253c]">
+                    <p className="line-clamp-2 text-[11px] font-bold leading-tight text-[#1b1e1d]">
                       {item.name}
                     </p>
                     <p className="mt-0.5 text-[10px] text-gray-400">
                       {item.planLabel ?? item.optionLabel ?? ''}
                     </p>
                   </div>
-                  <span className="text-xs font-bold text-[#1b253c]">
+                  <span className="text-xs font-bold text-[#1b1e1d]">
                     {formatPrice(item.price * item.quantity)}
                   </span>
                 </div>
@@ -422,7 +422,7 @@ export default function CheckoutPage() {
                 <button
                   type="button"
                   onClick={applyPromo}
-                  className="h-9 shrink-0 rounded-lg bg-[#1b253c] px-3 text-xs font-bold text-white transition-colors hover:bg-theme-primary"
+                  className="h-9 shrink-0 rounded-lg bg-[#1b1e1d] px-3 text-xs font-bold text-white transition-colors hover:bg-theme-primary"
                 >
                   Apply
                 </button>
@@ -435,11 +435,11 @@ export default function CheckoutPage() {
             <div className="mt-4 space-y-2.5 border-t border-dashed border-gray-200 pt-4 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Subtotal</span>
-                <span className="font-bold text-[#1b253c]">{formatPrice(cartSubtotal)}</span>
+                <span className="font-bold text-[#1b1e1d]">{formatPrice(cartSubtotal)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Delivery</span>
-                <span className="font-bold text-[#1b253c]">
+                <span className="font-bold text-[#1b1e1d]">
                   {delivery === 0 ? 'Free' : formatPrice(delivery)}
                 </span>
               </div>
@@ -450,7 +450,7 @@ export default function CheckoutPage() {
                 </div>
               ) : null}
               <div className="flex items-baseline justify-between border-t border-dashed border-gray-200 pt-3">
-                <span className="text-sm font-black uppercase tracking-wider text-[#1b253c]">
+                <span className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                   Total
                 </span>
                 <span className="text-2xl font-black text-theme-primary">{formatPrice(total)}</span>

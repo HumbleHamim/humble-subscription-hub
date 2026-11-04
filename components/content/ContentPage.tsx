@@ -23,16 +23,11 @@ export function ContentPage({
 }) {
   return (
     <div className="min-h-screen bg-gray-50/70 pb-16">
-      <section className="relative overflow-hidden bg-[#1b253c] py-12 text-white sm:py-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-20 -top-24 size-72 rounded-full opacity-25 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #e7933d 0%, transparent 70%)' }}
-        />
+      <section className="relative overflow-hidden bg-[#1b1e1d] py-12 text-white sm:py-16">
         <div className="site-container relative">
           <nav
             aria-label="Breadcrumb"
-            className="mb-4 flex items-center gap-2 text-[11px] font-semibold text-[#8e9bb4]"
+            className="mb-4 flex items-center gap-2 text-[11px] font-semibold text-[#8b928f]"
           >
             <Link href="/" className="transition-colors hover:text-white">
               Home
@@ -43,11 +38,11 @@ export function ContentPage({
             </span>
           </nav>
           <h1 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">{title}</h1>
-          <p className="mt-3 max-w-2xl text-sm font-medium leading-relaxed text-[#a6b0c3] sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm font-medium leading-relaxed text-[#a0a7a4] sm:text-base">
             {subtitle}
           </p>
           {updated ? (
-            <p className="mt-4 inline-flex rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#c3ccdc]">
+            <p className="mt-4 inline-flex rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#c5cac8]">
               Last updated {updated}
             </p>
           ) : null}
@@ -62,7 +57,7 @@ export function ContentPage({
               <div className="space-y-8">
                 {sections.map((section, index) => (
                   <section key={section.heading} className={index === 0 ? '' : 'pt-1'}>
-                    <h2 className="mb-2.5 flex items-baseline gap-2 text-base font-black tracking-tight text-[#1b253c] sm:text-lg">
+                    <h2 className="mb-2.5 flex items-baseline gap-2 text-base font-black tracking-tight text-[#1b1e1d] sm:text-lg">
                       <span className="text-theme-primary">{String(index + 1).padStart(2, '0')}</span>
                       {section.heading}
                     </h2>

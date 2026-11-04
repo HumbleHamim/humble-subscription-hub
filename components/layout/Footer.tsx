@@ -29,7 +29,7 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="inline-flex rounded-sm py-1.5 text-[#8e9bb4] transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-theme-primary md:py-1"
+              className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-theme-primary md:py-1"
             >
               {link.label}
             </Link>
@@ -47,12 +47,12 @@ export function Footer() {
   }));
 
   return (
-    <footer className="bg-[#1b253c] text-[#8e9bb4]">
+    <footer className="bg-[#1b1e1d] text-[#8b928f]">
       <div className="site-container pb-40 pt-12 md:pb-24 md:pt-14 xl:pb-8">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))] lg:gap-x-10">
           <div className="col-span-2 max-w-sm space-y-5 md:col-span-3 lg:col-span-1">
             <Logo variant="light" />
-            <p className="text-sm leading-relaxed text-[#a6b0c3]">{site.description}</p>
+            <p className="text-sm leading-relaxed text-[#a0a7a4]">{site.description}</p>
             <div className="flex flex-wrap items-center gap-2.5">
               <a
                 href={site.facebook}
@@ -83,7 +83,7 @@ export function Footer() {
               </a>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#8e9bb4]">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b928f]">
                 We accept
               </span>
               <span className="inline-flex h-7 items-center rounded-md bg-white px-2.5 text-[11px] font-black tracking-wide text-[#e2136e]">
@@ -101,22 +101,22 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col-reverse gap-3 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-[#8e9bb4]">
+          <p className="text-xs text-[#8b928f]">
             © 2026 <span className="font-semibold text-white">{site.name}</span>. All rights reserved.
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs">
             <li>
-              <Link href="/privacy" className="inline-flex rounded-sm py-1.5 text-[#8e9bb4] transition-colors hover:text-white md:py-1">
+              <Link href="/privacy" className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/terms" className="inline-flex rounded-sm py-1.5 text-[#8e9bb4] transition-colors hover:text-white md:py-1">
+              <Link href="/terms" className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
                 Terms &amp; Conditions
               </Link>
             </li>
             <li>
-              <Link href="/refund-policy" className="inline-flex rounded-sm py-1.5 text-[#8e9bb4] transition-colors hover:text-white md:py-1">
+              <Link href="/refund-policy" className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
                 Refund Policy
               </Link>
             </li>
