@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from '@/components/store/StoreProvider';
-import { categories, products as catalog } from '@/lib/data';
+import { categories } from '@/lib/data';
+import seedCatalog from '@/data/catalog-seed.json';
+import type { Product } from '@/lib/types';
 import { PublishPanel } from '@/components/admin/PublishPanel';
 import { deleteProduct, importCatalog, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
 import {
@@ -159,6 +161,9 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
     </label>
   );
 }
+
+// Permanent copy of the original catalog (never overwritten by the build sync).
+const catalog = seedCatalog as Product[];
 
 export function ProductsAdmin() {
   const { notify } = useStore();
