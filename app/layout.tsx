@@ -37,8 +37,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full antialiased scroll-smooth" data-scroll-behavior="smooth">
-      <body className="flex min-h-full flex-col bg-white">
+    <html
+      lang="en"
+      className="h-full antialiased scroll-smooth"
+      data-scroll-behavior="smooth"
+      data-theme="dark"
+      style={{ colorScheme: 'dark' }}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('humble.theme')==='light'){var d=document.documentElement;d.dataset.theme='light';d.style.colorScheme='light'}}catch(e){}",
+          }}
+        />
+      </head>
+      <body className="flex min-h-full flex-col">
         <StoreProvider>
           <AnnouncementBar />
           <Header />
