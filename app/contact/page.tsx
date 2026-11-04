@@ -75,16 +75,11 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gray-50/70 pb-16">
-      <section className="relative overflow-hidden bg-[#1b253c] py-12 text-white sm:py-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-20 -top-24 size-72 rounded-full opacity-25 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #e7933d 0%, transparent 70%)' }}
-        />
+      <section className="relative overflow-hidden bg-[#141414] py-12 text-white sm:py-16">
         <div className="site-container relative">
           <nav
             aria-label="Breadcrumb"
-            className="mb-4 flex items-center gap-2 text-[11px] font-semibold text-[#8e9bb4]"
+            className="mb-4 flex items-center gap-2 text-[11px] font-semibold text-[#8c8c8c]"
           >
             <Link href="/" className="transition-colors hover:text-white">
               Home
@@ -95,7 +90,7 @@ export default function ContactPage() {
             </span>
           </nav>
           <h1 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">Contact Us</h1>
-          <p className="mt-3 max-w-2xl text-sm font-medium leading-relaxed text-[#a6b0c3] sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm font-medium leading-relaxed text-[#a3a3a3] sm:text-base">
             Order questions, activation help or delivery updates — message us and a real person will
             reply.
           </p>
@@ -120,7 +115,7 @@ export default function ContactPage() {
                 <p className="mt-3 text-[10px] font-black uppercase tracking-wider text-gray-400">
                   {channel.label}
                 </p>
-                <p className="mt-0.5 truncate text-sm font-bold text-[#1b253c] group-hover:text-theme-primary">
+                <p className="mt-0.5 truncate text-sm font-bold text-[#141414] group-hover:text-theme-primary">
                   {channel.value}
                 </p>
                 <p className="mt-1 text-[11px] text-gray-400">{channel.hint}</p>
@@ -136,7 +131,7 @@ export default function ContactPage() {
                 <div className="mx-auto mb-4 grid size-16 place-items-center rounded-full bg-green-50 text-green-500">
                   <CheckCircle2 className="h-8 w-8" strokeWidth={1.8} />
                 </div>
-                <h2 className="text-xl font-black text-[#1b253c]">Message sent</h2>
+                <h2 className="text-xl font-black text-[#141414]">Message sent</h2>
                 <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-gray-500">
                   Thanks {form.name.split(' ')[0] || 'there'} — we have your message and will reply
                   shortly. For urgent issues, WhatsApp gets the fastest response.
@@ -156,7 +151,7 @@ export default function ContactPage() {
                       setSent(false);
                       setForm({ name: '', phone: '', email: '', topic: topics[0], message: '' });
                     }}
-                    className="inline-flex h-11 items-center justify-center rounded-lg border-2 border-[#1b253c] px-6 text-xs font-extrabold uppercase tracking-wider text-[#1b253c] transition-colors hover:bg-[#1b253c] hover:text-white"
+                    className="inline-flex h-11 items-center justify-center rounded-lg border-2 border-[#141414] px-6 text-xs font-extrabold uppercase tracking-wider text-[#141414] transition-colors hover:bg-[#141414] hover:text-white"
                   >
                     Send another
                   </button>
@@ -168,7 +163,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={submit} className="space-y-4">
                 <div>
-                  <h2 className="text-lg font-black tracking-tight text-[#1b253c]">
+                  <h2 className="text-lg font-black tracking-tight text-[#141414]">
                     Send a message
                   </h2>
                   <p className="mt-1 text-xs text-gray-500">
@@ -177,7 +172,7 @@ export default function ContactPage() {
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                    <label htmlFor="name" className="mb-1.5 block text-xs font-bold text-[#141414]">
                       Full name *
                     </label>
                     <input
@@ -190,7 +185,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="phone" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                    <label htmlFor="phone" className="mb-1.5 block text-xs font-bold text-[#141414]">
                       Phone *
                     </label>
                     <input
@@ -204,7 +199,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                    <label htmlFor="email" className="mb-1.5 block text-xs font-bold text-[#141414]">
                       Email
                     </label>
                     <input
@@ -217,7 +212,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="topic" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                    <label htmlFor="topic" className="mb-1.5 block text-xs font-bold text-[#141414]">
                       Topic
                     </label>
                     <select
@@ -234,7 +229,7 @@ export default function ContactPage() {
                     </select>
                   </div>
                   <div className="sm:col-span-2">
-                    <label htmlFor="message" className="mb-1.5 block text-xs font-bold text-[#1b253c]">
+                    <label htmlFor="message" className="mb-1.5 block text-xs font-bold text-[#141414]">
                       Message *
                     </label>
                     <textarea
@@ -259,32 +254,32 @@ export default function ContactPage() {
           </div>
 
           <aside className="space-y-4">
-            <div className="rounded-2xl bg-gradient-to-br from-[#1b253c] to-[#2a3a5c] p-5 text-white shadow-sm">
+            <div className="rounded-2xl bg-[#141414] p-5 text-white shadow-sm">
               <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider">
                 <Clock className="h-4 w-4 text-theme-primary" /> Support hours
               </h2>
               <ul className="mt-4 space-y-2 text-xs">
                 <li className="flex items-center justify-between">
-                  <span className="text-[#a6b0c3]">Saturday – Thursday</span>
+                  <span className="text-[#a3a3a3]">Saturday – Thursday</span>
                   <span className="font-bold">10am – 9pm</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-[#a6b0c3]">Friday</span>
+                  <span className="text-[#a3a3a3]">Friday</span>
                   <span className="font-bold">2pm – 9pm</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-[#a6b0c3]">WhatsApp</span>
+                  <span className="text-[#a3a3a3]">WhatsApp</span>
                   <span className="font-bold text-theme-primary">24/7</span>
                 </li>
               </ul>
-              <p className="mt-4 text-[11px] leading-relaxed text-[#a6b0c3]">
+              <p className="mt-4 text-[11px] leading-relaxed text-[#a3a3a3]">
                 Subscription activations are processed manually by our team. Orders placed during
                 off-hours go live first thing the next morning.
               </p>
             </div>
 
             <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-              <h2 className="text-sm font-black uppercase tracking-wider text-[#1b253c]">
+              <h2 className="text-sm font-black uppercase tracking-wider text-[#141414]">
                 Follow us
               </h2>
               <div className="mt-3 flex gap-2">
@@ -293,7 +288,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="grid size-10 place-items-center rounded-full bg-gray-50 text-[#1b253c] transition-colors hover:bg-theme-primary hover:text-white"
+                  className="grid size-10 place-items-center rounded-full bg-gray-50 text-[#141414] transition-colors hover:bg-theme-primary hover:text-white"
                 >
                   <FacebookIcon className="h-4 w-4" />
                 </a>
@@ -302,7 +297,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="grid size-10 place-items-center rounded-full bg-gray-50 text-[#1b253c] transition-colors hover:bg-theme-primary hover:text-white"
+                  className="grid size-10 place-items-center rounded-full bg-gray-50 text-[#141414] transition-colors hover:bg-theme-primary hover:text-white"
                 >
                   <InstagramIcon className="h-4 w-4" />
                 </a>
@@ -311,7 +306,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
-                  className="grid size-10 place-items-center rounded-full bg-gray-50 text-[#1b253c] transition-colors hover:bg-theme-primary hover:text-white"
+                  className="grid size-10 place-items-center rounded-full bg-gray-50 text-[#141414] transition-colors hover:bg-theme-primary hover:text-white"
                 >
                   <MessageCircle className="h-4 w-4" />
                 </a>

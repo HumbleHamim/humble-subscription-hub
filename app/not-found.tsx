@@ -13,7 +13,7 @@ export default function NotFound() {
           <p className="text-[11px] font-black uppercase tracking-[0.24em] text-theme-primary">
             Error 404
           </p>
-          <h1 className="mt-2 text-3xl font-black tracking-tight text-[#1b253c] sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-black tracking-tight text-[#141414] sm:text-4xl">
             This page went missing
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-gray-500">
@@ -28,7 +28,7 @@ export default function NotFound() {
             </Link>
             <Link
               href="/product"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border-2 border-[#1b253c] px-6 text-xs font-extrabold uppercase tracking-wider text-[#1b253c] transition-colors hover:bg-[#1b253c] hover:text-white"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border-2 border-[#141414] px-6 text-xs font-extrabold uppercase tracking-wider text-[#141414] transition-colors hover:bg-[#141414] hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" /> Browse Products
             </Link>
@@ -44,7 +44,7 @@ export default function NotFound() {
               <Link
                 key={category.slug}
                 href={`/product/category/${category.slug}`}
-                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold text-[#1b253c] transition-colors hover:border-theme-primary hover:text-theme-primary"
+                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold text-[#141414] transition-colors hover:border-theme-primary hover:text-theme-primary"
               >
                 {category.name}
               </Link>

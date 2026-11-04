@@ -26,21 +26,7 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="hero-glow relative overflow-hidden py-12 sm:py-16">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-32 -top-32 size-96 rounded-full opacity-25 blur-[80px]"
-        style={{
-          background: 'radial-gradient(circle, rgba(231,147,61,0.18) 0%, transparent 70%)',
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -right-32 size-96 rounded-full opacity-15 blur-[80px]"
-        style={{
-          background: 'radial-gradient(circle, rgba(27,37,60,0.10) 0%, transparent 70%)',
-        }}
-      />
+    <section className="relative overflow-hidden bg-gray-50 py-12 sm:py-16">
       <div className="site-container relative">
         <SectionHeading title="Why Choose Us" />
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
@@ -54,7 +40,7 @@ export function WhyChooseUs() {
                 <div className="mb-3 grid size-10 place-items-center rounded-xl bg-theme-primary/12 sm:mb-4 sm:size-11">
                   <Icon className="size-5 text-theme-primary" strokeWidth={1.5} />
                 </div>
-                <h3 className="mb-1 text-xs font-black uppercase tracking-wider text-[#1b253c] sm:text-sm">
+                <h3 className="mb-1 text-xs font-black uppercase tracking-wider text-[#141414] sm:text-sm">
                   {reason.title}
                 </h3>
                 <p className="text-xs leading-relaxed text-gray-500">{reason.description}</p>

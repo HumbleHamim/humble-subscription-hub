@@ -22,7 +22,7 @@ function Message({ title, body, children }: { title: string; body: string; child
   return (
     <Shell>
       <div className="mx-auto flex min-h-full max-w-md flex-col items-center justify-center px-6 py-16 text-center">
-        <h1 className="text-2xl font-black text-[#1b253c]">{title}</h1>
+        <h1 className="text-2xl font-black text-[#141414]">{title}</h1>
         <p className="mt-2 text-sm text-slate-500">{body}</p>
         {children ? <div className="mt-6 w-full">{children}</div> : null}
       </div>
@@ -86,7 +86,7 @@ export function AdminApp() {
       <Message title="Admin sign-in" body="Sign in with your admin account to continue.">
         <Link
           href="/login"
-          className="inline-block rounded-full bg-[#e7933d] px-8 py-3 text-sm font-bold text-white"
+          className="inline-block rounded-full bg-[#2f7d57] px-8 py-3 text-sm font-bold text-white"
         >
           Go to login
         </Link>
@@ -116,7 +116,7 @@ export function AdminApp() {
             Copy ID
           </button>
         </div>
-        <Link href="/" className="mt-6 inline-block text-sm font-bold text-[#c67625]">
+        <Link href="/" className="mt-6 inline-block text-sm font-bold text-[#256646]">
           Back to store
         </Link>
       </Message>
@@ -128,7 +128,7 @@ export function AdminApp() {
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <div>
-            <p className="text-base font-black text-[#1b253c]">Humble Admin</p>
+            <p className="text-base font-black text-[#141414]">Humble Admin</p>
             <p className="text-xs text-slate-400">{user?.email}</p>
           </div>
           <div className="flex items-center gap-2">
@@ -138,7 +138,7 @@ export function AdminApp() {
             <button
               type="button"
               onClick={() => void logout()}
-              className="rounded-full bg-[#1b253c] px-4 py-1.5 text-xs font-bold text-white"
+              className="rounded-full bg-[#141414] px-4 py-1.5 text-xs font-bold text-white"
             >
               Log out
             </button>
@@ -151,7 +151,7 @@ export function AdminApp() {
               type="button"
               onClick={() => setTab(name)}
               className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-bold ${
-                tab === name ? 'bg-[#e7933d] text-white' : 'text-slate-500 hover:bg-slate-100'
+                tab === name ? 'bg-[#2f7d57] text-white' : 'text-slate-500 hover:bg-slate-100'
               }`}
             >
               {name}
@@ -172,7 +172,7 @@ export function AdminApp() {
 
         {tab === 'Customers' && (
           <section>
-            <h2 className="mb-3 text-lg font-black text-[#1b253c]">Customers</h2>
+            <h2 className="mb-3 text-lg font-black text-[#141414]">Customers</h2>
             {customersError ? (
               <p className="rounded-xl bg-red-50 p-4 text-sm text-red-600">{customersError}</p>
             ) : !customers ? (
@@ -212,7 +212,7 @@ export function AdminApp() {
 
         {(tab === 'Orders' || tab === 'Content') && (
           <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <h2 className="text-lg font-black text-[#1b253c]">{tab}</h2>
+            <h2 className="text-lg font-black text-[#141414]">{tab}</h2>
             <p className="mt-1 text-sm text-slate-400">This section is built in a later step.</p>
           </div>
         )}
@@ -225,7 +225,7 @@ function Stat({ label, value, muted }: { label: string; value: string; muted?: b
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5">
       <p className="text-xs font-bold uppercase tracking-wide text-slate-400">{label}</p>
-      <p className={`mt-2 font-black ${muted ? 'text-sm text-slate-300' : 'text-3xl text-[#1b253c]'}`}>
+      <p className={`mt-2 font-black ${muted ? 'text-sm text-slate-300' : 'text-3xl text-[#141414]'}`}>
         {value}
       </p>
     </div>

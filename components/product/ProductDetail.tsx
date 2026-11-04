@@ -90,7 +90,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1b253c]">
+    <div className="min-h-screen bg-white text-[#141414]">
       <div className="site-container hidden py-4 md:block">
         <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-2 text-xs text-gray-400">
           <Link href="/" className="transition-colors hover:text-theme-primary">
@@ -101,7 +101,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
             Products
           </Link>
           <span>/</span>
-          <span className="truncate font-semibold text-[#1b253c]" aria-current="page">
+          <span className="truncate font-semibold text-[#141414]" aria-current="page">
             {product.name}
           </span>
         </nav>
@@ -144,7 +144,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
               <span className="text-[11px] font-black uppercase tracking-widest text-theme-primary">
                 {product.category.name}
               </span>
-              <h1 className="text-2xl font-black leading-tight tracking-tight text-[#1b253c] sm:text-3xl">
+              <h1 className="text-2xl font-black leading-tight tracking-tight text-[#141414] sm:text-3xl">
                 {product.name}
               </h1>
               <div className="flex items-center gap-2 pt-0.5">
@@ -164,7 +164,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
                 {product.features.slice(0, 4).map((feature) => (
                   <span
                     key={feature}
-                    className="rounded-full bg-gray-100 px-3 py-1.5 text-[11px] font-bold text-[#1b253c] transition-colors hover:bg-theme-primary/10"
+                    className="rounded-full bg-gray-100 px-3 py-1.5 text-[11px] font-bold text-[#141414] transition-colors hover:bg-theme-primary/10"
                   >
                     {feature}
                   </span>
@@ -186,7 +186,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
 
             {product.variations.map((type) => (
               <div key={type.name} className="space-y-2">
-                <h3 className="text-xs font-black uppercase tracking-wider text-[#1b253c]">
+                <h3 className="text-xs font-black uppercase tracking-wider text-[#141414]">
                   Choose {type.name}
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -204,7 +204,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
                         }
                         className={`rounded-xl border-2 px-3.5 py-2 text-xs font-bold transition-all ${
                           active
-                            ? 'border-theme-primary bg-theme-primary/5 text-[#1b253c]'
+                            ? 'border-theme-primary bg-theme-primary/5 text-[#141414]'
                             : 'border-gray-200 text-gray-600 hover:border-gray-300'
                         }`}
                       >
@@ -218,7 +218,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
 
             {product.pricingOptions.length > 0 ? (
               <div className="space-y-2">
-                <h3 className="text-xs font-black uppercase tracking-wider text-[#1b253c]">
+                <h3 className="text-xs font-black uppercase tracking-wider text-[#141414]">
                   Choose Plan
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -241,7 +241,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
                             ({formatPrice(planMonthlyPrice(option.type, option.price))}/month)
                           </span>
                         </span>
-                        <span className="text-xl font-black text-[#1b253c]">
+                        <span className="text-xl font-black text-[#141414]">
                           {formatPrice(option.price)}
                         </span>
                       </button>
@@ -291,7 +291,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
               <button
                 type="button"
                 onClick={handleBuyNow}
-                className="flex-1 rounded-xl bg-[#1b253c] px-6 py-4 text-sm font-extrabold uppercase tracking-wider text-white transition-all hover:bg-theme-primary hover:shadow-lg hover:shadow-[#1b253c]/20"
+                className="flex-1 rounded-xl bg-[#141414] px-6 py-4 text-sm font-extrabold uppercase tracking-wider text-white transition-all hover:bg-theme-primary hover:shadow-lg hover:shadow-[#141414]/20"
               >
                 Buy Now
               </button>
@@ -328,8 +328,8 @@ export function ProductDetail({ product, related }: { product: Product; related:
               onClick={() => setTab(item)}
               className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-black uppercase tracking-wider transition-all duration-300 sm:px-7 ${
                 tab === item
-                  ? 'bg-[#1b253c] text-white shadow-md'
-                  : 'text-gray-500 hover:text-[#1b253c]'
+                  ? 'bg-[#141414] text-white shadow-md'
+                  : 'text-gray-500 hover:text-[#141414]'
               }`}
             >
               {item}
@@ -362,7 +362,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
 
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="space-y-3 lg:col-span-2">
-                <h2 className="text-lg font-black text-[#1b253c]">About this product</h2>
+                <h2 className="text-lg font-black text-[#141414]">About this product</h2>
                 <div className="space-y-2 text-sm leading-relaxed text-gray-600">
                   {hasUsefulDescription ? (
                     description.split('\n').filter(Boolean).map((paragraph, index) => (
@@ -385,8 +385,8 @@ export function ProductDetail({ product, related }: { product: Product; related:
                 </div>
               </div>
 
-              <div className="space-y-3 rounded-2xl border border-[#1b253c]/10 bg-[#1b253c]/[0.04] p-5">
-                <h3 className="text-xs font-black uppercase tracking-widest text-[#1b253c]">
+              <div className="space-y-3 rounded-2xl border border-[#141414]/10 bg-[#141414]/[0.04] p-5">
+                <h3 className="text-xs font-black uppercase tracking-widest text-[#141414]">
                   What&apos;s Included
                 </h3>
                 <ul className="space-y-2.5">
@@ -398,7 +398,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
                       <span className="grid size-5 shrink-0 place-items-center rounded-full bg-theme-primary/10">
                         <Check className="h-3 w-3 text-theme-primary" strokeWidth={2.5} />
                       </span>
-                      <span className="text-xs font-semibold text-[#1b253c]">{feature}</span>
+                      <span className="text-xs font-semibold text-[#141414]">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -409,7 +409,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
           <div className="glass-panel rounded-3xl p-6 md:p-10">
             <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
               <div>
-                <h2 className="text-lg font-black text-[#1b253c]">Customer Reviews</h2>
+                <h2 className="text-lg font-black text-[#141414]">Customer Reviews</h2>
                 <div className="mt-1 flex items-center gap-2">
                   <Rating rating={product.rating} size="md" />
                   <span className="text-sm text-gray-400">
@@ -432,11 +432,11 @@ export function ProductDetail({ product, related }: { product: Product; related:
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="grid size-9 place-items-center rounded-full bg-[#1b253c] text-xs font-black text-white">
+                        <span className="grid size-9 place-items-center rounded-full bg-[#141414] text-xs font-black text-white">
                           {review.userName.slice(0, 1).toUpperCase()}
                         </span>
                         <div>
-                          <p className="text-sm font-bold text-[#1b253c]">{review.userName}</p>
+                          <p className="text-sm font-bold text-[#141414]">{review.userName}</p>
                           <p className="text-[10px] font-semibold text-gray-400">
                             {new Date(review.createdAt).toLocaleDateString('en-GB', {
                               day: 'numeric',
@@ -454,7 +454,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
               </div>
             ) : (
               <div className="rounded-2xl border border-dashed border-gray-200 py-14 text-center">
-                <p className="text-sm font-bold text-[#1b253c]">No reviews yet</p>
+                <p className="text-sm font-bold text-[#141414]">No reviews yet</p>
                 <p className="mt-1 text-xs text-gray-400">
                   Be the first to share your experience after ordering.
                 </p>
@@ -468,7 +468,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
         <section className="border-t border-gray-100 bg-gray-50/70 py-10 sm:py-12">
           <div className="site-container">
             <div className="mb-5 flex flex-col items-center gap-2.5 text-center sm:mb-6">
-              <h2 className="text-xl font-black uppercase tracking-tight text-[#1b253c] sm:text-2xl">
+              <h2 className="text-xl font-black uppercase tracking-tight text-[#141414] sm:text-2xl">
                 You May Also Like
               </h2>
               <span aria-hidden="true" className="h-[3px] w-10 rounded-full bg-theme-primary" />
@@ -481,7 +481,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
             <div className="mt-6 flex justify-center">
               <Link
                 href={`/product/category/${product.category.slug}`}
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-[#1b253c]/15 bg-white px-6 text-sm font-bold text-[#1b253c] shadow-sm transition hover:border-[#1b253c] hover:bg-[#1b253c] hover:text-white"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-[#141414]/15 bg-white px-6 text-sm font-bold text-[#141414] shadow-sm transition hover:border-[#141414] hover:bg-[#141414] hover:text-white"
               >
                 View More <ChevronRight className="size-4" />
               </Link>

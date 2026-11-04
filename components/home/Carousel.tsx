@@ -43,7 +43,7 @@ export function Carousel({ children, label }: { children: ReactNode; label: stri
         onClick={() => scroll(-1)}
         aria-label={`Previous ${label}`}
         disabled={!canScrollLeft}
-        className="absolute -left-5 top-1/2 z-10 hidden size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#1b253c] shadow-[0_4px_16px_rgba(27,37,60,0.14)] ring-1 ring-black/5 transition duration-200 hover:bg-[#1b253c] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none lg:flex xl:-left-14 xl:size-11"
+        className="absolute -left-5 top-1/2 z-10 hidden size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#141414] shadow-[0_4px_16px_rgba(0,0,0,0.14)] ring-1 ring-black/5 transition duration-200 hover:bg-[#141414] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none lg:flex xl:-left-14 xl:size-11"
       >
         <ChevronLeft className="size-5" strokeWidth={2.5} />
       </button>
@@ -52,7 +52,7 @@ export function Carousel({ children, label }: { children: ReactNode; label: stri
         onClick={() => scroll(1)}
         aria-label={`Next ${label}`}
         disabled={!canScrollRight}
-        className="absolute -right-5 top-1/2 z-10 hidden size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#1b253c] shadow-[0_4px_16px_rgba(27,37,60,0.14)] ring-1 ring-black/5 transition duration-200 hover:bg-[#1b253c] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none lg:flex xl:-right-14 xl:size-11"
+        className="absolute -right-5 top-1/2 z-10 hidden size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#141414] shadow-[0_4px_16px_rgba(0,0,0,0.14)] ring-1 ring-black/5 transition duration-200 hover:bg-[#141414] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none lg:flex xl:-right-14 xl:size-11"
       >
         <ChevronRight className="size-5" strokeWidth={2.5} />
       </button>

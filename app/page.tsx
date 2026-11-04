@@ -12,7 +12,7 @@ export default function HomePage() {
   const popularProducts = getPopularProducts(24);
 
   return (
-    <div className="min-h-screen bg-white text-[#1b253c]">
+    <div className="min-h-screen bg-white text-[#141414]">
       <CategoryCarousel />
       <SubscriptionCarousel products={subscriptions} />
 
@@ -36,7 +36,7 @@ export default function HomePage() {
             <Link
               href="/product"
               aria-label="View all products"
-              className="group inline-flex h-11 items-center gap-2 rounded-full border border-[#1b253c]/15 bg-white px-6 text-sm font-bold text-[#1b253c] shadow-sm transition duration-200 hover:border-[#1b253c] hover:bg-[#1b253c] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2"
+              className="group inline-flex h-11 items-center gap-2 rounded-full border border-[#141414]/15 bg-white px-6 text-sm font-bold text-[#141414] shadow-sm transition duration-200 hover:border-[#141414] hover:bg-[#141414] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2"
             >
               View All
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" />

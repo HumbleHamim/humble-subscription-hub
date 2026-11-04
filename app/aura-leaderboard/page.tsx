@@ -38,10 +38,10 @@ const periodLabels: Record<Period, string> = {
 };
 
 function rankColor(rank: number) {
-  if (rank === 1) return 'from-[#f6c453] to-[#e7933d] text-[#5a3508]';
-  if (rank === 2) return 'from-[#dfe6f2] to-[#b7c4d9] text-[#2c3b55]';
-  if (rank === 3) return 'from-[#f0c09a] to-[#d38b52] text-[#5c3416]';
-  return 'from-gray-100 to-gray-200 text-[#1b253c]';
+  if (rank === 1) return 'bg-[#2f7d57] text-white';
+  if (rank === 2) return 'bg-[#d4d4d4] text-[#141414]';
+  if (rank === 3) return 'bg-[#737373] text-white';
+  return 'bg-gray-100 text-[#141414]';
 }
 
 export default function AuraLeaderboardPage() {
@@ -82,17 +82,7 @@ export default function AuraLeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50/70 pb-16">
-      <section className="relative overflow-hidden bg-[#1b253c] py-12 text-white sm:py-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-24 -top-24 size-80 rounded-full opacity-30 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #e7933d 0%, transparent 70%)' }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-28 right-0 size-80 rounded-full opacity-20 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #e7933d 0%, transparent 70%)' }}
-        />
+      <section className="relative overflow-hidden bg-[#141414] py-12 text-white sm:py-16">
         <div className="site-container relative text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-theme-primary/40 bg-theme-primary/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-theme-primary">
             <Sparkles className="h-3.5 w-3.5" /> Hall of Aura
@@ -100,7 +90,7 @@ export default function AuraLeaderboardPage() {
           <h1 className="mt-4 text-3xl font-black uppercase tracking-tight sm:text-4xl md:text-5xl">
             Aura Leaderboard
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-[#a6b0c3] sm:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-[#a3a3a3] sm:text-base">
             Every order you place builds your Aura. Top supporters unlock early access, exclusive
             discounts and bragging rights.
           </p>
@@ -114,7 +104,7 @@ export default function AuraLeaderboardPage() {
                 className={`flex-1 rounded-full px-4 py-2.5 text-[11px] font-black uppercase tracking-wider transition-all sm:text-xs ${
                   period === key
                     ? 'bg-theme-primary text-white shadow-lg shadow-theme-primary/25'
-                    : 'text-[#c3ccdc] hover:text-white'
+                    : 'text-[#c4c4c4] hover:text-white'
                 }`}
               >
                 {periodLabels[key]}
@@ -133,20 +123,20 @@ export default function AuraLeaderboardPage() {
             return (
               <div
                 key={entry.name}
-                className={`rounded-2xl border bg-white p-3 text-center shadow-[0_16px_40px_-24px_rgba(27,37,60,0.45)] sm:p-5 ${
+                className={`rounded-2xl border bg-white p-3 text-center shadow-[0_16px_40px_-24px_rgba(0,0,0,0.45)] sm:p-5 ${
                   isFirst ? 'border-theme-primary/40 pb-5 pt-0 sm:pb-8' : 'border-gray-100'
                 }`}
               >
                 {isFirst ? (
                   <div className="-mt-6 mb-2 flex justify-center sm:-mt-8 sm:mb-3">
-                    <span className="relative grid size-12 place-items-center rounded-full bg-gradient-to-br from-[#f6c453] to-[#e7933d] text-white shadow-lg sm:size-16">
+                    <span className="relative grid size-12 place-items-center rounded-full bg-[#2f7d57] text-white shadow-lg sm:size-16">
                       <Crown className="h-6 w-6 sm:h-8 sm:w-8" strokeWidth={1.8} />
                     </span>
                   </div>
                 ) : (
                   <div className="mb-2 flex justify-center sm:mb-3">
                     <span
-                      className={`grid size-10 place-items-center rounded-full bg-gradient-to-br sm:size-12 ${rankColor(rank)}`}
+                      className={`grid size-10 place-items-center rounded-full sm:size-12 ${rankColor(rank)}`}
                     >
                       <Medal className="h-5 w-5" strokeWidth={1.8} />
                     </span>
@@ -155,7 +145,7 @@ export default function AuraLeaderboardPage() {
                 <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-gray-400">
                   Rank #{rank}
                 </span>
-                <p className="mt-0.5 truncate text-xs font-black text-[#1b253c] sm:text-sm">
+                <p className="mt-0.5 truncate text-xs font-black text-[#141414] sm:text-sm">
                   {entry.name}
                 </p>
                 <p className="mt-1 text-base font-black text-theme-primary sm:text-xl">
@@ -177,7 +167,7 @@ export default function AuraLeaderboardPage() {
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 p-4 sm:p-5">
-              <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#1b253c]">
+              <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#141414]">
                 <Trophy className="h-4 w-4 text-theme-primary" /> Top 10
               </h2>
               <div className="relative w-full sm:w-56">
@@ -188,7 +178,7 @@ export default function AuraLeaderboardPage() {
                   type="search"
                   placeholder="Search a name..."
                   aria-label="Search leaderboard"
-                  className="h-9 w-full rounded-lg border border-gray-200 bg-gray-50 pl-9 pr-3 text-xs text-[#1b253c] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
+                  className="h-9 w-full rounded-lg border border-gray-200 bg-gray-50 pl-9 pr-3 text-xs text-[#141414] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
                 />
               </div>
             </div>
@@ -212,16 +202,16 @@ export default function AuraLeaderboardPage() {
                     }`}
                   >
                     <span
-                      className={`grid size-7 place-items-center rounded-full bg-gradient-to-br text-[11px] font-black ${
+                      className={`grid size-7 place-items-center rounded-full text-[11px] font-black ${
                         rank <= 3
                           ? rankColor(rank)
-                          : 'bg-none bg-gray-100 text-gray-500'
+                          : 'bg-gray-100 text-gray-500'
                       }`}
                     >
                       {rank}
                     </span>
                     <div className="min-w-0">
-                      <p className="flex items-center gap-1.5 truncate text-xs font-bold text-[#1b253c] sm:text-sm">
+                      <p className="flex items-center gap-1.5 truncate text-xs font-bold text-[#141414] sm:text-sm">
                         {entry.name}
                         {isMe ? (
                           <span className="rounded-full bg-theme-primary px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider text-white">
@@ -249,8 +239,8 @@ export default function AuraLeaderboardPage() {
           </div>
 
           <aside className="h-fit space-y-4">
-            <div className="rounded-2xl bg-gradient-to-br from-[#1b253c] to-[#2a3a5c] p-5 text-white shadow-sm">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a6b0c3]">
+            <div className="rounded-2xl bg-[#141414] p-5 text-white shadow-sm">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a3a3a3]">
                 Your standing
               </p>
               {user ? (
@@ -258,7 +248,7 @@ export default function AuraLeaderboardPage() {
                   <p className="mt-2 text-3xl font-black text-theme-primary">
                     {Math.round(myAura).toLocaleString()}
                   </p>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#a6b0c3]">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#a3a3a3]">
                     Aura earned
                   </p>
                   <div className="mt-4 flex items-center justify-between rounded-xl bg-white/[0.08] px-3 py-2.5">
@@ -268,14 +258,14 @@ export default function AuraLeaderboardPage() {
                     </span>
                   </div>
                   {myAura === 0 ? (
-                    <p className="mt-3 text-[11px] leading-relaxed text-[#a6b0c3]">
+                    <p className="mt-3 text-[11px] leading-relaxed text-[#a3a3a3]">
                       Place your first order to enter the leaderboard.
                     </p>
                   ) : null}
                 </>
               ) : (
                 <>
-                  <p className="mt-2 text-sm leading-relaxed text-[#c3ccdc]">
+                  <p className="mt-2 text-sm leading-relaxed text-[#c4c4c4]">
                     Sign in to see where you rank against the Humble community.
                   </p>
                   <Link
@@ -289,7 +279,7 @@ export default function AuraLeaderboardPage() {
             </div>
 
             <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-              <h3 className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1b253c]">
+              <h3 className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#141414]">
                 <Zap className="h-4 w-4 text-theme-primary" /> How Aura works
               </h3>
               <ul className="mt-3 space-y-2.5 text-[11px] leading-relaxed text-gray-500">
