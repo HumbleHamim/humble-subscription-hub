@@ -38,7 +38,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="grid size-10 shrink-0 place-items-center rounded-full text-[#141414] transition-colors hover:text-theme-primary focus-visible:outline-2 focus-visible:outline-theme-primary"
+      className="grid size-10 shrink-0 place-items-center rounded-full text-[#1b1e1d] transition-colors hover:text-theme-primary focus-visible:outline-2 focus-visible:outline-theme-primary"
     >
       {theme === 'dark' ? (
         <Sun className="h-[22px] w-[22px]" strokeWidth={1.5} />

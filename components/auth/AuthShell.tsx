@@ -28,7 +28,7 @@ export function AuthShell({
     <div className="min-h-[80vh] bg-gray-50/70 py-8 md:py-14">
       <div className="site-container">
         <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.5)] lg:grid-cols-2">
-          <div className="relative hidden flex-col justify-between overflow-hidden bg-[#141414] p-10 text-white lg:flex">
+          <div className="relative hidden flex-col justify-between overflow-hidden bg-[#1b1e1d] p-10 text-white lg:flex">
             <div className="relative">
               <Logo variant="light" />
               <h2 className="mt-10 text-3xl font-black leading-tight tracking-tight">
@@ -36,7 +36,7 @@ export function AuthShell({
                 <br />
                 <span className="text-theme-primary">all in one place.</span>
               </h2>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#a3a3a3]">
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#a0a7a4]">
                 {site.description}
               </p>
             </div>
@@ -48,7 +48,7 @@ export function AuthShell({
                     <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-theme-primary/15 text-theme-primary">
                       <Icon className="h-4 w-4" strokeWidth={2} />
                     </span>
-                    <span className="text-sm font-medium text-[#d4d4d4]">{perk.text}</span>
+                    <span className="text-sm font-medium text-[#d2d6d5]">{perk.text}</span>
                   </li>
                 );
               })}
@@ -59,7 +59,7 @@ export function AuthShell({
             <div className="mb-6 lg:hidden">
               <Logo />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-[#141414] sm:text-3xl">
+            <h1 className="text-2xl font-black tracking-tight text-[#1b1e1d] sm:text-3xl">
               {title}
             </h1>
             <p className="mt-1.5 text-sm text-gray-500">{subtitle}</p>
@@ -95,7 +95,7 @@ export function AuthField({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-xs font-bold text-[#141414]">
+      <label htmlFor={id} className="mb-1.5 block text-xs font-bold text-[#1b1e1d]">
         {label}
       </label>
       <input
@@ -107,7 +107,7 @@ export function AuthField({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className="h-11 w-full rounded-lg border border-gray-200 bg-white px-3.5 text-sm text-[#141414] outline-none transition-all placeholder:text-gray-400 focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/15"
+        className="h-11 w-full rounded-lg border border-gray-200 bg-white px-3.5 text-sm text-[#1b1e1d] outline-none transition-all placeholder:text-gray-400 focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/15"
       />
       {hint ? <p className="mt-1 text-[11px] text-gray-400">{hint}</p> : null}
     </div>

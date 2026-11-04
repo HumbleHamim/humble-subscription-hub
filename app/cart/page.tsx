@@ -67,7 +67,7 @@ export default function CartPage() {
       <div className="site-container py-8 md:py-10">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-black tracking-tight text-[#141414] md:text-3xl">
+            <h1 className="text-2xl font-black tracking-tight text-[#1b1e1d] md:text-3xl">
               Shopping Cart
             </h1>
             <p className="mt-1 text-sm text-gray-500">
@@ -100,7 +100,7 @@ export default function CartPage() {
                     <div className="min-w-0">
                       <Link
                         href={`/product/${item.slug}`}
-                        className="line-clamp-2 text-sm font-bold text-[#141414] transition-colors hover:text-theme-primary sm:text-[15px]"
+                        className="line-clamp-2 text-sm font-bold text-[#1b1e1d] transition-colors hover:text-theme-primary sm:text-[15px]"
                       >
                         {item.name}
                       </Link>
@@ -134,7 +134,7 @@ export default function CartPage() {
                       >
                         <Minus className="h-3.5 w-3.5" />
                       </button>
-                      <span className="w-8 text-center text-sm font-black text-[#141414]">
+                      <span className="w-8 text-center text-sm font-black text-[#1b1e1d]">
                         {item.quantity}
                       </span>
                       <button
@@ -150,7 +150,7 @@ export default function CartPage() {
                       <p className="text-[11px] font-semibold text-gray-400">
                         {formatPrice(item.price)} each
                       </p>
-                      <p className="text-base font-black text-[#141414]">
+                      <p className="text-base font-black text-[#1b1e1d]">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
@@ -163,14 +163,14 @@ export default function CartPage() {
               <div className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4">
                 <Truck className="h-5 w-5 shrink-0 text-theme-primary" />
                 <div>
-                  <p className="text-xs font-bold text-[#141414]">Nationwide delivery</p>
+                  <p className="text-xs font-bold text-[#1b1e1d]">Nationwide delivery</p>
                   <p className="text-[11px] text-gray-400">Free over ৳3,000</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4">
                 <ShieldCheck className="h-5 w-5 shrink-0 text-theme-primary" />
                 <div>
-                  <p className="text-xs font-bold text-[#141414]">Safe & secure</p>
+                  <p className="text-xs font-bold text-[#1b1e1d]">Safe & secure</p>
                   <p className="text-[11px] text-gray-400">bKash, Nagad or cash on delivery</p>
                 </div>
               </div>
@@ -178,18 +178,18 @@ export default function CartPage() {
           </div>
 
           <aside className="h-fit rounded-2xl border border-gray-100 bg-white p-5 shadow-sm lg:sticky lg:top-24">
-            <h2 className="text-sm font-black uppercase tracking-wider text-[#141414]">
+            <h2 className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
               Order Summary
             </h2>
 
             <div className="mt-5 space-y-3 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Subtotal</span>
-                <span className="font-bold text-[#141414]">{formatPrice(cartSubtotal)}</span>
+                <span className="font-bold text-[#1b1e1d]">{formatPrice(cartSubtotal)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Delivery</span>
-                <span className="font-bold text-[#141414]">
+                <span className="font-bold text-[#1b1e1d]">
                   {delivery === 0 ? 'Free' : formatPrice(delivery)}
                 </span>
               </div>
@@ -201,7 +201,7 @@ export default function CartPage() {
               ) : null}
               <div className="border-t border-dashed border-gray-200 pt-3">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-sm font-black uppercase tracking-wider text-[#141414]">
+                  <span className="text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                     Total
                   </span>
                   <span className="text-2xl font-black text-theme-primary">{formatPrice(total)}</span>
@@ -228,7 +228,7 @@ export default function CartPage() {
                 <button
                   type="button"
                   onClick={applyPromo}
-                  className="h-9 shrink-0 rounded-lg bg-[#141414] px-4 text-xs font-bold text-white transition-colors hover:bg-theme-primary"
+                  className="h-9 shrink-0 rounded-lg bg-[#1b1e1d] px-4 text-xs font-bold text-white transition-colors hover:bg-theme-primary"
                 >
                   Apply
                 </button>

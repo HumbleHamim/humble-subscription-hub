@@ -16,7 +16,7 @@ export function EmptyState({
       <div className="mb-6 grid size-20 place-items-center rounded-full bg-gray-100 text-gray-300">
         {icon}
       </div>
-      <h1 className="text-2xl font-black text-[#141414]">{title}</h1>
+      <h1 className="text-2xl font-black text-[#1b1e1d]">{title}</h1>
       <p className="mt-2 max-w-md text-sm text-gray-400">{description}</p>
       {action ? <div className="mt-6">{action}</div> : null}
     </div>

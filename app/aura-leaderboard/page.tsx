@@ -39,9 +39,9 @@ const periodLabels: Record<Period, string> = {
 
 function rankColor(rank: number) {
   if (rank === 1) return 'bg-[#2f7d57] text-white';
-  if (rank === 2) return 'bg-[#d4d4d4] text-[#141414]';
-  if (rank === 3) return 'bg-[#737373] text-white';
-  return 'bg-gray-100 text-[#141414]';
+  if (rank === 2) return 'bg-[#d2d6d5] text-[#1b1e1d]';
+  if (rank === 3) return 'bg-[#737a77] text-white';
+  return 'bg-gray-100 text-[#1b1e1d]';
 }
 
 export default function AuraLeaderboardPage() {
@@ -82,7 +82,7 @@ export default function AuraLeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50/70 pb-16">
-      <section className="relative overflow-hidden bg-[#141414] py-12 text-white sm:py-16">
+      <section className="relative overflow-hidden bg-[#1b1e1d] py-12 text-white sm:py-16">
         <div className="site-container relative text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-theme-primary/40 bg-theme-primary/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-theme-primary">
             <Sparkles className="h-3.5 w-3.5" /> Hall of Aura
@@ -90,7 +90,7 @@ export default function AuraLeaderboardPage() {
           <h1 className="mt-4 text-3xl font-black uppercase tracking-tight sm:text-4xl md:text-5xl">
             Aura Leaderboard
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-[#a3a3a3] sm:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-[#a0a7a4] sm:text-base">
             Every order you place builds your Aura. Top supporters unlock early access, exclusive
             discounts and bragging rights.
           </p>
@@ -104,7 +104,7 @@ export default function AuraLeaderboardPage() {
                 className={`flex-1 rounded-full px-4 py-2.5 text-[11px] font-black uppercase tracking-wider transition-all sm:text-xs ${
                   period === key
                     ? 'bg-theme-primary text-white shadow-lg shadow-theme-primary/25'
-                    : 'text-[#c4c4c4] hover:text-white'
+                    : 'text-[#c5cac8] hover:text-white'
                 }`}
               >
                 {periodLabels[key]}
@@ -145,7 +145,7 @@ export default function AuraLeaderboardPage() {
                 <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-gray-400">
                   Rank #{rank}
                 </span>
-                <p className="mt-0.5 truncate text-xs font-black text-[#141414] sm:text-sm">
+                <p className="mt-0.5 truncate text-xs font-black text-[#1b1e1d] sm:text-sm">
                   {entry.name}
                 </p>
                 <p className="mt-1 text-base font-black text-theme-primary sm:text-xl">
@@ -167,7 +167,7 @@ export default function AuraLeaderboardPage() {
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 p-4 sm:p-5">
-              <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#141414]">
+              <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                 <Trophy className="h-4 w-4 text-theme-primary" /> Top 10
               </h2>
               <div className="relative w-full sm:w-56">
@@ -178,7 +178,7 @@ export default function AuraLeaderboardPage() {
                   type="search"
                   placeholder="Search a name..."
                   aria-label="Search leaderboard"
-                  className="h-9 w-full rounded-lg border border-gray-200 bg-gray-50 pl-9 pr-3 text-xs text-[#141414] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
+                  className="h-9 w-full rounded-lg border border-gray-200 bg-gray-50 pl-9 pr-3 text-xs text-[#1b1e1d] outline-none transition-all focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/10"
                 />
               </div>
             </div>
@@ -211,7 +211,7 @@ export default function AuraLeaderboardPage() {
                       {rank}
                     </span>
                     <div className="min-w-0">
-                      <p className="flex items-center gap-1.5 truncate text-xs font-bold text-[#141414] sm:text-sm">
+                      <p className="flex items-center gap-1.5 truncate text-xs font-bold text-[#1b1e1d] sm:text-sm">
                         {entry.name}
                         {isMe ? (
                           <span className="rounded-full bg-theme-primary px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider text-white">
@@ -239,8 +239,8 @@ export default function AuraLeaderboardPage() {
           </div>
 
           <aside className="h-fit space-y-4">
-            <div className="rounded-2xl bg-[#141414] p-5 text-white shadow-sm">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a3a3a3]">
+            <div className="rounded-2xl bg-[#1b1e1d] p-5 text-white shadow-sm">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a0a7a4]">
                 Your standing
               </p>
               {user ? (
@@ -248,7 +248,7 @@ export default function AuraLeaderboardPage() {
                   <p className="mt-2 text-3xl font-black text-theme-primary">
                     {Math.round(myAura).toLocaleString()}
                   </p>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#a3a3a3]">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#a0a7a4]">
                     Aura earned
                   </p>
                   <div className="mt-4 flex items-center justify-between rounded-xl bg-white/[0.08] px-3 py-2.5">
@@ -258,14 +258,14 @@ export default function AuraLeaderboardPage() {
                     </span>
                   </div>
                   {myAura === 0 ? (
-                    <p className="mt-3 text-[11px] leading-relaxed text-[#a3a3a3]">
+                    <p className="mt-3 text-[11px] leading-relaxed text-[#a0a7a4]">
                       Place your first order to enter the leaderboard.
                     </p>
                   ) : null}
                 </>
               ) : (
                 <>
-                  <p className="mt-2 text-sm leading-relaxed text-[#c4c4c4]">
+                  <p className="mt-2 text-sm leading-relaxed text-[#c5cac8]">
                     Sign in to see where you rank against the Humble community.
                   </p>
                   <Link
@@ -279,7 +279,7 @@ export default function AuraLeaderboardPage() {
             </div>
 
             <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-              <h3 className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#141414]">
+              <h3 className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1b1e1d]">
                 <Zap className="h-4 w-4 text-theme-primary" /> How Aura works
               </h3>
               <ul className="mt-3 space-y-2.5 text-[11px] leading-relaxed text-gray-500">

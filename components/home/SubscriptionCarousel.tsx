@@ -20,7 +20,7 @@ export function SubscriptionCarousel({ products }: { products: Product[] }) {
         <div className="mt-2 flex justify-center sm:mt-3">
           <Link
             href="/subscriptions"
-            className="group inline-flex h-11 items-center gap-2 rounded-full border border-[#141414]/15 bg-white px-6 text-sm font-bold text-[#141414] shadow-sm transition duration-200 hover:border-[#141414] hover:bg-[#141414] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2"
+            className="group inline-flex h-11 items-center gap-2 rounded-full border border-[#1b1e1d]/15 bg-white px-6 text-sm font-bold text-[#1b1e1d] shadow-sm transition duration-200 hover:border-[#1b1e1d] hover:bg-[#1b1e1d] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2"
           >
             View All
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" />

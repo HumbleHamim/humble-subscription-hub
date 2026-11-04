@@ -40,7 +40,7 @@ export function WhyChooseUs() {
                 <div className="mb-3 grid size-10 place-items-center rounded-xl bg-theme-primary/12 sm:mb-4 sm:size-11">
                   <Icon className="size-5 text-theme-primary" strokeWidth={1.5} />
                 </div>
-                <h3 className="mb-1 text-xs font-black uppercase tracking-wider text-[#141414] sm:text-sm">
+                <h3 className="mb-1 text-xs font-black uppercase tracking-wider text-[#1b1e1d] sm:text-sm">
                   {reason.title}
                 </h3>
                 <p className="text-xs leading-relaxed text-gray-500">{reason.description}</p>

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { site } from '@/lib/constants';
 
 export function Logo({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
-  const primary = variant === 'dark' ? 'text-[#141414]' : 'text-white';
-  const secondary = variant === 'dark' ? 'text-[#8a8a8a]' : 'text-[#a3a3a3]';
+  const primary = variant === 'dark' ? 'text-[#1b1e1d]' : 'text-white';
+  const secondary = variant === 'dark' ? 'text-[#868d8a]' : 'text-[#a0a7a4]';
 
   return (
     <Link
@@ -11,9 +11,9 @@ export function Logo({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
       aria-label={`${site.name} home`}
       className="group flex shrink-0 items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-theme-primary"
     >
-      <span className="relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-[13px] bg-[#141414] shadow-[0_4px_14px_-6px_rgba(0,0,0,0.6)] transition-transform duration-300 group-hover:-rotate-3 sm:size-11">
+      <span className="relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-[13px] bg-[#1b1e1d] shadow-[0_4px_14px_-6px_rgba(0,0,0,0.6)] transition-transform duration-300 group-hover:-rotate-3 sm:size-11">
         <svg viewBox="0 0 44 44" className="size-full" aria-hidden="true">
-          <rect width="44" height="44" rx="13" fill="#141414" />
+          <rect width="44" height="44" rx="13" fill="#1b1e1d" />
           <path
             d="M24.6 7.5 13.4 24.3h7.2l-1.2 12.2 11.2-16.8h-7.2l1.2-12.2Z"
             fill="#6dbb90"

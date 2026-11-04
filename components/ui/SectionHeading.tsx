@@ -22,7 +22,7 @@ export function SectionHeading({
     >
       <div className={`flex w-full items-end gap-3 ${centered ? 'justify-center' : 'justify-between'}`}>
         <div className={centered ? '' : 'min-w-0'}>
-          <h2 className="text-xl font-black uppercase tracking-tight text-[#141414] sm:text-2xl">
+          <h2 className="text-xl font-black uppercase tracking-tight text-[#1b1e1d] sm:text-2xl">
             {title}
           </h2>
           {subtitle ? (

@@ -311,7 +311,7 @@ export function ProductsAdmin() {
     <section>
       <PublishPanel />
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-black text-[#141414]">Products</h2>
+        <h2 className="text-lg font-black text-[#1b1e1d]">Products</h2>
         <div className="flex gap-2">
           <button
             type="button"
@@ -345,7 +345,7 @@ export function ProductsAdmin() {
         <p className="text-sm text-slate-400">Loading…</p>
       ) : items.length === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-          <p className="font-bold text-[#141414]">No products yet</p>
+          <p className="font-bold text-[#1b1e1d]">No products yet</p>
           <p className="mt-1 text-sm text-slate-400">Tap “Add product” to create your first one.</p>
         </div>
       ) : (
@@ -359,7 +359,7 @@ export function ProductsAdmin() {
                 className="size-16 shrink-0 rounded-lg bg-slate-100 object-cover"
               />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-bold text-[#141414]">{product.name}</p>
+                <p className="truncate text-sm font-bold text-[#1b1e1d]">{product.name}</p>
                 <p className="text-xs text-slate-500">
                   {product.category.name} · ৳{product.price} · stock {product.stock}
                   {product.active ? '' : ' · hidden'}
@@ -390,7 +390,7 @@ export function ProductsAdmin() {
         <div className="fixed inset-0 z-[110] overflow-y-auto bg-white">
           <div className="mx-auto max-w-2xl px-4 pb-28 pt-4">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-black text-[#141414]">
+              <h3 className="text-lg font-black text-[#1b1e1d]">
                 {form.isNew ? 'Add product' : 'Edit product'}
               </h3>
               <button

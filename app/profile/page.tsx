@@ -55,7 +55,7 @@ export default function ProfilePage() {
             </Link>
             <Link
               href="/register"
-              className="inline-flex items-center rounded-lg border-2 border-[#141414] px-8 py-3 text-sm font-extrabold uppercase tracking-wider text-[#141414] transition-colors hover:bg-[#141414] hover:text-white"
+              className="inline-flex items-center rounded-lg border-2 border-[#1b1e1d] px-8 py-3 text-sm font-extrabold uppercase tracking-wider text-[#1b1e1d] transition-colors hover:bg-[#1b1e1d] hover:text-white"
             >
               Create Account
             </Link>
@@ -81,19 +81,19 @@ export default function ProfilePage() {
     <div className="min-h-[70vh] bg-gray-50/70 pb-16">
       <div className="site-container py-8 md:py-10">
         <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-          <div className="relative flex flex-col gap-4 bg-[#141414] p-6 text-white sm:flex-row sm:items-center sm:justify-between md:p-8">
+          <div className="relative flex flex-col gap-4 bg-[#1b1e1d] p-6 text-white sm:flex-row sm:items-center sm:justify-between md:p-8">
             <div className="relative flex items-center gap-4">
               <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-theme-primary text-lg font-black text-white sm:size-16 sm:text-xl">
                 {initials || 'HS'}
               </span>
               <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a3a3a3]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a0a7a4]">
                   My Account
                 </p>
                 <h1 className="truncate text-xl font-black tracking-tight sm:text-2xl">
                   {user.name}
                 </h1>
-                <p className="truncate text-xs text-[#a3a3a3]">{user.email}</p>
+                <p className="truncate text-xs text-[#a0a7a4]">{user.email}</p>
               </div>
             </div>
             <div className="relative flex flex-wrap items-center gap-2">
@@ -116,19 +116,19 @@ export default function ProfilePage() {
 
           <div className="grid grid-cols-3 divide-x divide-gray-100 border-b border-gray-100">
             <div className="p-4 text-center sm:p-5">
-              <p className="text-xl font-black text-[#141414] sm:text-2xl">{orders.length}</p>
+              <p className="text-xl font-black text-[#1b1e1d] sm:text-2xl">{orders.length}</p>
               <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-400">
                 Orders
               </p>
             </div>
             <div className="p-4 text-center sm:p-5">
-              <p className="text-xl font-black text-[#141414] sm:text-2xl">{aura.toLocaleString()}</p>
+              <p className="text-xl font-black text-[#1b1e1d] sm:text-2xl">{aura.toLocaleString()}</p>
               <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-400">
                 Aura
               </p>
             </div>
             <div className="p-4 text-center sm:p-5">
-              <p className="text-xl font-black text-[#141414] sm:text-2xl">{wishlist.length}</p>
+              <p className="text-xl font-black text-[#1b1e1d] sm:text-2xl">{wishlist.length}</p>
               <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-400">
                 Saved
               </p>
@@ -143,8 +143,8 @@ export default function ProfilePage() {
                 onClick={() => setTab(item)}
                 className={`shrink-0 rounded-lg px-4 py-2 text-xs font-black uppercase tracking-wider transition-colors ${
                   tab === item
-                    ? 'bg-[#141414] text-white'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-[#141414]'
+                    ? 'bg-[#1b1e1d] text-white'
+                    : 'text-gray-500 hover:bg-gray-50 hover:text-[#1b1e1d]'
                 }`}
               >
                 {item}
@@ -161,7 +161,7 @@ export default function ProfilePage() {
                 <div className="mx-auto mb-4 grid size-14 place-items-center rounded-full bg-gray-100 text-gray-300">
                   <Package className="h-6 w-6" />
                 </div>
-                <h2 className="text-lg font-black text-[#141414]">No orders yet</h2>
+                <h2 className="text-lg font-black text-[#1b1e1d]">No orders yet</h2>
                 <p className="mt-1 text-sm text-gray-400">
                   Your placed orders will appear here with live status.
                 </p>
@@ -181,7 +181,7 @@ export default function ProfilePage() {
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-dashed border-gray-100 pb-3">
                       <div>
-                        <p className="text-sm font-black text-[#141414]">{order.id}</p>
+                        <p className="text-sm font-black text-[#1b1e1d]">{order.id}</p>
                         <p className="text-[11px] text-gray-400">
                           {new Date(order.createdAt).toLocaleDateString('en-GB', {
                             day: 'numeric',
@@ -202,14 +202,14 @@ export default function ProfilePage() {
                             <img src={item.image} alt="" className="size-full object-cover" />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="line-clamp-1 text-xs font-bold text-[#141414]">
+                            <p className="line-clamp-1 text-xs font-bold text-[#1b1e1d]">
                               {item.name}
                             </p>
                             <p className="text-[10px] text-gray-400">
                               {item.planLabel ?? item.optionLabel ?? 'Standard'} × {item.quantity}
                             </p>
                           </div>
-                          <span className="shrink-0 text-xs font-bold text-[#141414]">
+                          <span className="shrink-0 text-xs font-bold text-[#1b1e1d]">
                             {formatPrice(item.price * item.quantity)}
                           </span>
                         </div>
@@ -235,7 +235,7 @@ export default function ProfilePage() {
                 <div className="mx-auto mb-4 grid size-14 place-items-center rounded-full bg-gray-100 text-gray-300">
                   <Heart className="h-6 w-6" />
                 </div>
-                <h2 className="text-lg font-black text-[#141414]">Nothing saved yet</h2>
+                <h2 className="text-lg font-black text-[#1b1e1d]">Nothing saved yet</h2>
                 <p className="mt-1 text-sm text-gray-400">
                   Tap the heart on a product to keep it here.
                 </p>
@@ -252,7 +252,7 @@ export default function ProfilePage() {
           {tab === 'Account' ? (
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-                <h2 className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#141414]">
+                <h2 className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                   <UserIcon className="h-4 w-4 text-theme-primary" /> Personal Details
                 </h2>
                 <dl className="space-y-3 text-sm">
@@ -260,19 +260,19 @@ export default function ProfilePage() {
                     <dt className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
                       Full name
                     </dt>
-                    <dd className="font-bold text-[#141414]">{user.name}</dd>
+                    <dd className="font-bold text-[#1b1e1d]">{user.name}</dd>
                   </div>
                   <div>
                     <dt className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
                       Email
                     </dt>
-                    <dd className="font-bold text-[#141414]">{user.email}</dd>
+                    <dd className="font-bold text-[#1b1e1d]">{user.email}</dd>
                   </div>
                   <div>
                     <dt className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
                       Phone
                     </dt>
-                    <dd className="font-bold text-[#141414]">{user.phone || 'Not provided'}</dd>
+                    <dd className="font-bold text-[#1b1e1d]">{user.phone || 'Not provided'}</dd>
                   </div>
                 </dl>
                 <p className="mt-4 rounded-xl bg-gray-50 p-3 text-[11px] leading-relaxed text-gray-500">
@@ -282,24 +282,24 @@ export default function ProfilePage() {
               </div>
 
               <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-                <h2 className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#141414]">
+                <h2 className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#1b1e1d]">
                   <Sparkles className="h-4 w-4 text-theme-primary" /> Aura Summary
                 </h2>
-                <div className="rounded-2xl bg-[#141414] p-5 text-white">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a3a3a3]">
+                <div className="rounded-2xl bg-[#1b1e1d] p-5 text-white">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a0a7a4]">
                     Total Aura
                   </p>
                   <p className="mt-1 text-3xl font-black text-theme-primary">
                     {aura.toLocaleString()}
                   </p>
-                  <p className="mt-2 text-[11px] leading-relaxed text-[#a3a3a3]">
+                  <p className="mt-2 text-[11px] leading-relaxed text-[#a0a7a4]">
                     You earn 1 Aura for every ৳10 spent, plus 25 bonus Aura per order. Climb the
                     leaderboard for early access drops.
                   </p>
                 </div>
                 <Link
                   href="/aura-leaderboard"
-                  className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg border-2 border-[#141414] text-xs font-extrabold uppercase tracking-wider text-[#141414] transition-colors hover:bg-[#141414] hover:text-white"
+                  className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg border-2 border-[#1b1e1d] text-xs font-extrabold uppercase tracking-wider text-[#1b1e1d] transition-colors hover:bg-[#1b1e1d] hover:text-white"
                 >
                   <Trophy className="h-4 w-4" /> See Leaderboard
                 </Link>

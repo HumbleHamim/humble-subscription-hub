@@ -63,7 +63,7 @@ export function ProductCard({
               </span>
             ) : null}
             {!product.isPhysicalProduct ? (
-              <span className="rounded-full bg-[#141414] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-white shadow-sm">
+              <span className="rounded-full bg-[#1b1e1d] px-2 py-1 text-[9px] font-black uppercase tracking-wider text-white shadow-sm">
                 Digital
               </span>
             ) : null}
@@ -81,7 +81,7 @@ export function ProductCard({
           className={`absolute right-2.5 top-2.5 z-10 grid size-8 place-items-center rounded-full border shadow-sm backdrop-blur-sm transition-colors ${
             saved
               ? 'border-red-200 bg-white text-red-500'
-              : 'border-white/60 bg-white/85 text-[#141414] hover:text-red-500'
+              : 'border-white/60 bg-white/85 text-[#1b1e1d] hover:text-red-500'
           }`}
         >
           <Heart className={`h-4 w-4 ${saved ? 'fill-current' : ''}`} strokeWidth={2} />
@@ -94,7 +94,7 @@ export function ProductCard({
         </span>
         <Link
           href={`/product/${product.slug}`}
-          className={`mt-1 min-h-9 text-[13px] font-bold leading-[18px] text-[#141414] transition-colors group-hover:text-theme-primary sm:min-h-10 sm:text-sm sm:leading-5 ${
+          className={`mt-1 min-h-9 text-[13px] font-bold leading-[18px] text-[#1b1e1d] transition-colors group-hover:text-theme-primary sm:min-h-10 sm:text-sm sm:leading-5 ${
             variant === 'grid' ? 'line-clamp-1 min-h-0' : 'line-clamp-2'
           }`}
         >
@@ -113,7 +113,7 @@ export function ProductCard({
               </p>
             ) : null}
             <p
-              className={`text-[15px] font-black leading-tight text-[#141414] sm:text-base ${
+              className={`text-[15px] font-black leading-tight text-[#1b1e1d] sm:text-base ${
                 product.comparePrice ? 'mt-1' : ''
               }`}
             >
@@ -129,7 +129,7 @@ export function ProductCard({
             type="button"
             onClick={handleAdd}
             aria-label={`Add ${product.name} to cart`}
-            className="grid size-9 shrink-0 place-items-center rounded-full bg-[#141414]/[0.06] text-[#141414] transition-colors duration-300 hover:bg-theme-primary hover:text-white"
+            className="grid size-9 shrink-0 place-items-center rounded-full bg-[#1b1e1d]/[0.06] text-[#1b1e1d] transition-colors duration-300 hover:bg-theme-primary hover:text-white"
           >
             {isSubscription ? (
               <ShoppingBag className="h-4 w-4" strokeWidth={2} />

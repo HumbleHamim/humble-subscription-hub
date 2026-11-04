@@ -71,7 +71,7 @@ export function Header() {
             type="button"
             onClick={() => setDrawerOpen(true)}
             aria-label="Open menu"
-            className="-ml-2 block shrink-0 rounded-lg p-2 text-[#141414] transition-colors hover:text-theme-primary focus-visible:outline-2 focus-visible:outline-theme-primary lg:hidden"
+            className="-ml-2 block shrink-0 rounded-lg p-2 text-[#1b1e1d] transition-colors hover:text-theme-primary focus-visible:outline-2 focus-visible:outline-theme-primary lg:hidden"
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -98,7 +98,7 @@ export function Header() {
                       className={`group relative flex h-full items-center whitespace-nowrap text-[12px] font-extrabold tracking-wider transition-colors duration-200 ${
                         isActive(link.href)
                           ? 'text-theme-primary'
-                          : 'text-[#141414] hover:text-theme-primary'
+                          : 'text-[#1b1e1d] hover:text-theme-primary'
                       }`}
                     >
                       {link.label}
@@ -116,7 +116,7 @@ export function Header() {
                             <Link
                               key={category.slug}
                               href={`/product/category/${category.slug}`}
-                              className="flex items-center justify-between rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#141414] transition-colors hover:bg-gray-50 hover:text-theme-primary"
+                              className="flex items-center justify-between rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#1b1e1d] transition-colors hover:bg-gray-50 hover:text-theme-primary"
                             >
                               <span>{category.name}</span>
                               <span className="text-[11px] font-semibold text-gray-400">
@@ -148,7 +148,7 @@ export function Header() {
                         ? 'text-amber-500 hover:text-amber-600'
                         : isActive(link.href)
                           ? 'text-theme-primary'
-                          : 'text-[#141414] hover:text-theme-primary'
+                          : 'text-[#1b1e1d] hover:text-theme-primary'
                     }`}
                   >
                     {link.label}
@@ -171,12 +171,12 @@ export function Header() {
                 type="search"
                 aria-label="Search products"
                 placeholder="Search subscriptions, earbuds…"
-                className="h-10 w-full rounded-full border border-gray-200 bg-white/80 pl-4 pr-11 text-[13px] font-medium text-[#141414] outline-none transition-all placeholder:text-gray-400 focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/15"
+                className="h-10 w-full rounded-full border border-gray-200 bg-white/80 pl-4 pr-11 text-[13px] font-medium text-[#1b1e1d] outline-none transition-all placeholder:text-gray-400 focus:border-theme-primary focus:ring-2 focus:ring-theme-primary/15"
               />
               <button
                 type="submit"
                 aria-label="Search"
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-[#a3a3a3] transition-colors hover:text-theme-primary"
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-[#a0a7a4] transition-colors hover:text-theme-primary"
               >
                 <Search className="h-5 w-5" strokeWidth={2} />
               </button>
@@ -186,7 +186,7 @@ export function Header() {
               type="button"
               onClick={() => setMobileSearch((open) => !open)}
               aria-label="Search"
-              className="rounded-lg p-2 text-[#141414] transition-colors hover:text-theme-primary md:hidden"
+              className="rounded-lg p-2 text-[#1b1e1d] transition-colors hover:text-theme-primary md:hidden"
             >
               <Search className="h-6 w-6" strokeWidth={1.5} />
             </button>
@@ -196,7 +196,7 @@ export function Header() {
               <Link
                 href={user ? '/profile' : '/login'}
                 aria-label={user ? 'My profile' : 'Login'}
-                className="group relative flex flex-col items-center gap-0.5 text-[#141414] transition-colors hover:text-theme-primary"
+                className="group relative flex flex-col items-center gap-0.5 text-[#1b1e1d] transition-colors hover:text-theme-primary"
               >
                 <User className="h-[22px] w-[22px]" strokeWidth={1.5} />
                 <span className="hidden text-[10px] font-bold uppercase tracking-widest xl:block">
@@ -207,7 +207,7 @@ export function Header() {
               <Link
                 href="/wishlist"
                 aria-label="Wishlist"
-                className="group relative flex flex-col items-center gap-0.5 text-[#141414] transition-colors hover:text-theme-primary"
+                className="group relative flex flex-col items-center gap-0.5 text-[#1b1e1d] transition-colors hover:text-theme-primary"
               >
                 <span className="relative">
                   <Heart className="h-[22px] w-[22px]" strokeWidth={1.5} />
@@ -225,7 +225,7 @@ export function Header() {
               <Link
                 href="/cart"
                 aria-label="Cart"
-                className="group relative flex flex-col items-center gap-0.5 text-[#141414] transition-colors hover:text-theme-primary"
+                className="group relative flex flex-col items-center gap-0.5 text-[#1b1e1d] transition-colors hover:text-theme-primary"
               >
                 <span className="relative">
                   <ShoppingBag className="h-[22px] w-[22px]" strokeWidth={1.5} />
@@ -277,7 +277,7 @@ export function Header() {
                 type="button"
                 onClick={() => setDrawerOpen(false)}
                 aria-label="Close menu"
-                className="rounded-full p-1.5 text-[#141414] transition-colors hover:bg-gray-100"
+                className="rounded-full p-1.5 text-[#1b1e1d] transition-colors hover:bg-gray-100"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -292,7 +292,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     className={`flex h-11 items-center rounded-xl px-3 text-sm font-bold transition-colors hover:bg-gray-50 ${
-                      isActive(link.href) ? 'text-theme-primary' : 'text-[#141414]'
+                      isActive(link.href) ? 'text-theme-primary' : 'text-[#1b1e1d]'
                     }`}
                   >
                     {link.label}
@@ -333,14 +333,14 @@ export function Header() {
                 <nav className="space-y-0.5">
                   <Link
                     href={user ? '/profile' : '/login'}
-                    className="flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-bold text-[#141414] transition-colors hover:bg-gray-50"
+                    className="flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-bold text-[#1b1e1d] transition-colors hover:bg-gray-50"
                   >
                     <LogIn className="h-5 w-5 text-gray-400" />
                     {user ? 'My Profile' : 'Login'}
                   </Link>
                   <Link
                     href="/wishlist"
-                    className="flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-bold text-[#141414] transition-colors hover:bg-gray-50"
+                    className="flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-bold text-[#1b1e1d] transition-colors hover:bg-gray-50"
                   >
                     <Heart className="h-5 w-5 text-gray-400" />
                     Wishlist
@@ -349,7 +349,7 @@ export function Header() {
                     href={site.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-bold text-[#141414] transition-colors hover:bg-gray-50"
+                    className="flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-bold text-[#1b1e1d] transition-colors hover:bg-gray-50"
                   >
                     <span className="grid size-5 place-items-center rounded-full bg-green-100 text-[10px] font-black text-green-600">
                       W

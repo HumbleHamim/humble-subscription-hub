@@ -14,7 +14,7 @@ export function CategoryCarousel() {
             <li key={category.slug} className="carousel-item">
               <Link
                 href={`/product/category/${category.slug}`}
-                className="group relative flex aspect-[4/5] w-full flex-col justify-end overflow-hidden rounded-2xl bg-[#141414] p-3 text-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] ring-1 ring-black/5 transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_18px_36px_-18px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-4"
+                className="group relative flex aspect-[4/5] w-full flex-col justify-end overflow-hidden rounded-2xl bg-[#1b1e1d] p-3 text-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] ring-1 ring-black/5 transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_18px_36px_-18px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-4"
               >
                 <img
                   src={category.image}
