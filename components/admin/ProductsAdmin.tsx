@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from '@/components/store/StoreProvider';
 import { categories } from '@/lib/data';
 import { deleteProduct, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
@@ -168,6 +168,45 @@ export function ProductsAdmin() {
   const [formError, setFormError] = useState('');
   const [saving, setSaving] = useState(false);
   const [slugTouched, setSlugTouched] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const formRef = useRef<Form | null>(null);
+  formRef.current = form;
+
+  async function handleFiles(files: File[]) {
+    if (files.length === 0) return;
+    setUploading(true);
+    setFormError('');
+    try {
+      const added: string[] = [];
+      for (const file of files) {
+        try {
+          added.push(await compressImage(file));
+        } catch (error) {
+          setFormError(error instanceof Error ? error.message : 'An image could not be processed.');
+        }
+      }
+      const current = formRef.current;
+      if (current && added.length > 0) {
+        const merged = [...current.images];
+        let rejected = 0;
+        for (const image of added) {
+          if (merged.length >= MAX_IMAGES || totalImageBytes([...merged, image]) > MAX_IMAGES_BYTES) {
+            rejected += 1;
+            continue;
+          }
+          merged.push(image);
+        }
+        update({ images: merged });
+        if (rejected > 0) {
+          setFormError(
+            `${rejected} photo(s) were not added (limit: ${MAX_IMAGES} photos and a total size cap). Remove one and try again.`,
+          );
+        }
+      }
+    } finally {
+      setUploading(false);
+    }
+  }
 
   async function refresh() {
     try {
