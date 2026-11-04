@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from '@/components/store/StoreProvider';
-import { categories } from '@/lib/data';
-import { deleteProduct, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
+import { categories, products as catalog } from '@/lib/data';
+import { PublishPanel } from '@/components/admin/PublishPanel';
+import { deleteProduct, importCatalog, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
 import {
   MAX_IMAGES,
   MAX_IMAGES_BYTES,
@@ -221,6 +222,24 @@ export function ProductsAdmin() {
     void refresh();
   }, []);
 
+  const [importing, setImporting] = useState(false);
+
+  async function onImport() {
+    if (!window.confirm(`Copy the ${catalog.length} built-in products into your database so you can edit them? Products already in the database are not changed.`)) {
+      return;
+    }
+    setImporting(true);
+    try {
+      const { added, skipped } = await importCatalog(catalog);
+      notify(`Imported ${added} product(s)${skipped ? `, ${skipped} already existed` : ''}.`, 'success');
+      await refresh();
+    } catch {
+      notify('Import failed. Make sure the latest Firestore rules are published.', 'error');
+    } finally {
+      setImporting(false);
+    }
+  }
+
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!items) return [];
@@ -285,15 +304,26 @@ export function ProductsAdmin() {
 
   return (
     <section>
+      <PublishPanel />
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-lg font-black text-[#1b253c]">Products</h2>
-        <button
-          type="button"
-          onClick={openNew}
-          className="rounded-full bg-[#e7933d] px-5 py-2 text-sm font-bold text-white"
-        >
-          + Add product
-        </button>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            disabled={importing}
+            onClick={() => void onImport()}
+            className="rounded-full border border-slate-300 px-4 py-2 text-sm font-bold disabled:opacity-50"
+          >
+            {importing ? 'Importing…' : 'Import current catalog'}
+          </button>
+          <button
+            type="button"
+            onClick={openNew}
+            className="rounded-full bg-[#e7933d] px-5 py-2 text-sm font-bold text-white"
+          >
+            + Add product
+          </button>
+        </div>
       </div>
 
       <input

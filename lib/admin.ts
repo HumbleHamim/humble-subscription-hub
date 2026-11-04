@@ -8,8 +8,9 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  writeBatch,
 } from 'firebase/firestore';
-import type { PricingOption } from '@/lib/types';
+import type { PricingOption, Product } from '@/lib/types';
 import { requireFirebase } from '@/lib/firebase';
 
 export type Customer = {
@@ -131,4 +132,38 @@ export async function saveProduct(product: ProductDoc, isNew: boolean): Promise<
 export async function deleteProduct(slug: string): Promise<void> {
   const { db } = requireFirebase();
   await deleteDoc(doc(db, 'products', slug));
+}
+
+/** Copies the built-in catalog into Firestore. Products that already exist are
+ *  skipped, so running it twice never overwrites edits. Returns how many were added. */
+export async function importCatalog(catalog: Product[]): Promise<{ added: number; skipped: number }> {
+  const { db } = requireFirebase();
+  const existing = new Set((await getDocs(collection(db, 'products'))).docs.map((entry) => entry.id));
+  const fresh = catalog.filter((product) => !existing.has(product.slug));
+  for (let i = 0; i < fresh.length; i += 400) {
+    const batch = writeBatch(db);
+    for (const product of fresh.slice(i, i + 400)) {
+      batch.set(doc(db, 'products', product.slug), {
+        ...product,
+        active: true,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+    }
+    await batch.commit();
+  }
+  return { added: fresh.length, skipped: catalog.length - fresh.length };
+}
+
+/* ---------------- Publish link (Firestore: settings/publish, admin-only) ---------------- */
+
+export async function getPublishHook(): Promise<string> {
+  const { db } = requireFirebase();
+  const snap = await getDoc(doc(db, 'settings', 'publish'));
+  return snap.exists() ? String(snap.data().hookUrl ?? '') : '';
+}
+
+export async function savePublishHook(hookUrl: string): Promise<void> {
+  const { db } = requireFirebase();
+  await setDoc(doc(db, 'settings', 'publish'), { hookUrl, updatedAt: serverTimestamp() });
 }

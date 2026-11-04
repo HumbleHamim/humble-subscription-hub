@@ -28,6 +28,11 @@ service cloud.firestore {
     }
 
     // Orders and content rules are added in their own steps.
+    // Private admin settings (e.g. the publish link).
+    match /settings/{id} {
+      allow read, write: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
