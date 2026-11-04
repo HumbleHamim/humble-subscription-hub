@@ -4,6 +4,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { useStore } from '@/components/store/StoreProvider';
 import { categories } from '@/lib/data';
 import { deleteProduct, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
+import {
+  MAX_IMAGES,
+  MAX_IMAGES_BYTES,
+  compressImage,
+  totalImageBytes,
+} from '@/lib/admin-images';
 
 const PLAN_TYPES = [
   { type: 'monthly', label: '1 Month', days: 30 },
@@ -22,8 +28,7 @@ type Form = {
   comparePrice: string;
   stock: string;
   tag: string;
-  image: string;
-  gallery: string;
+  images: string[];
   description: string;
   features: string;
   youtube: string;
@@ -45,8 +50,7 @@ function emptyForm(): Form {
     comparePrice: '',
     stock: '10',
     tag: '',
-    image: '',
-    gallery: '',
+    images: [],
     description: '',
     features: '',
     youtube: '',
@@ -68,18 +72,13 @@ function formFromProduct(p: ProductDoc): Form {
     comparePrice: p.comparePrice == null ? '' : String(p.comparePrice),
     stock: String(p.stock),
     tag: p.tag ?? '',
-    image: p.image,
-    gallery: p.gallery.join('\n'),
+    images: p.gallery.length > 0 ? p.gallery : p.image ? [p.image] : [],
     description: p.description,
     features: p.features.join('\n'),
     youtube: p.youtubeVideoUrl ?? '',
     active: p.active,
     plans,
   };
-}
-
-function isValidUrl(value: string): boolean {
-  return value.startsWith('https://') || value.startsWith('/');
 }
 
 function splitLines(value: string): string[] {
@@ -110,10 +109,12 @@ function buildProduct(form: Form): ProductDoc | string {
   const stock = Number(form.stock);
   if (!Number.isInteger(stock) || stock < 0) return 'Stock must be a whole number (0 or more).';
 
-  const image = form.image.trim();
-  if (!isValidUrl(image)) return 'The main image link must start with https://';
-  const gallery = splitLines(form.gallery);
-  if (gallery.some((url) => !isValidUrl(url))) return 'Every gallery link must start with https://';
+  if (form.images.length === 0) return 'Upload at least one product image.';
+  if (totalImageBytes(form.images) > MAX_IMAGES_BYTES) {
+    return 'The images are too large together. Remove one or two and try again.';
+  }
+  const image = form.images[0];
+  const gallery = form.images;
 
   const youtube = form.youtube.trim();
   if (youtube && !youtube.startsWith('https://')) return 'The video link must start with https://';
@@ -134,7 +135,7 @@ function buildProduct(form: Form): ProductDoc | string {
     name,
     description: form.description.trim(),
     image,
-    gallery: gallery.length > 0 ? gallery : [image],
+    gallery,
     isPhysicalProduct: form.isPhysical,
     stock,
     price,
@@ -447,26 +448,56 @@ export function ProductsAdmin() {
                 />
               </Field>
 
-              <Field label="Main image link" hint="Must start with https:// (a link from your image host).">
-                <input
-                  className={inputClass}
-                  value={form.image}
-                  onChange={(event) => update({ image: event.target.value })}
-                />
-                {form.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={form.image} alt="" className="mt-2 size-24 rounded-lg bg-slate-100 object-cover" />
-                ) : null}
-              </Field>
-
-              <Field label="More image links (optional)" hint="One link per line.">
-                <textarea
-                  className={inputClass}
-                  rows={3}
-                  value={form.gallery}
-                  onChange={(event) => update({ gallery: event.target.value })}
-                />
-              </Field>
+              <div>
+                <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">
+                  Product images
+                </span>
+                <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                  {form.images.map((src, index) => (
+                    <div key={index} className="relative aspect-square overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={src} alt="" className="size-full object-cover" />
+                      {index === 0 ? (
+                        <span className="absolute left-1 top-1 rounded bg-[#e7933d] px-1.5 py-0.5 text-[10px] font-bold text-white">
+                          Main
+                        </span>
+                      ) : null}
+                      <div className="absolute inset-x-0 bottom-0 flex justify-between bg-black/55 px-1 py-0.5 text-[11px] font-bold text-white">
+                        {index > 0 ? (
+                          <button type="button" onClick={() => update({ images: [src, ...form.images.filter((_, i) => i !== index)] })}>
+                            Make main
+                          </button>
+                        ) : (
+                          <span />
+                        )}
+                        <button type="button" onClick={() => update({ images: form.images.filter((_, i) => i !== index) })}>
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  {form.images.length < MAX_IMAGES ? (
+                    <label className="grid aspect-square cursor-pointer place-items-center rounded-lg border-2 border-dashed border-slate-300 bg-white text-center text-xs font-bold text-slate-500">
+                      <span>{uploading ? 'Processing…' : '+ Upload images'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        className="hidden"
+                        disabled={uploading}
+                        onChange={(event) => {
+                          const files = Array.from(event.target.files ?? []);
+                          event.target.value = '';
+                          void handleFiles(files);
+                        }}
+                      />
+                    </label>
+                  ) : null}
+                </div>
+                <span className="mt-1 block text-xs text-slate-400">
+                  Up to {MAX_IMAGES} photos. The first one is the main photo. Photos are shrunk automatically.
+                </span>
+              </div>
 
               <Field label="Description">
                 <textarea
