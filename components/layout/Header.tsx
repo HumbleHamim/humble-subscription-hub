@@ -18,6 +18,7 @@ import { categories } from '@/lib/data';
 import { navLinks, site } from '@/lib/constants';
 import { useStore } from '@/components/store/StoreProvider';
 import { Logo } from '@/components/ui/Logo';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
 
 export function Header() {
   const router = useRouter();
@@ -190,7 +191,8 @@ export function Header() {
               <Search className="h-6 w-6" strokeWidth={1.5} />
             </button>
 
-            <div className="flex items-center gap-3 lg:gap-4">
+            <div className="flex items-center gap-1 sm:gap-3 lg:gap-4">
+              <ThemeToggle />
               <Link
                 href={user ? '/profile' : '/login'}
                 aria-label={user ? 'My profile' : 'Login'}

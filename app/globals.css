@@ -228,3 +228,86 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Dark theme (default). Light theme = the original look, untouched.   */
+/* These rules are intentionally outside @layer so they win over the    */
+/* Tailwind utility classes used across the components.                */
+/* ------------------------------------------------------------------ */
+html[data-theme="dark"] {
+  --dk-bg: #0b1220;
+  --dk-surface: #121b2e;
+  --dk-surface-2: #0f1729;
+  --dk-surface-3: #1a2540;
+  --dk-border: #243252;
+  --dk-border-strong: #31426b;
+  --dk-text: #e8edf7;
+  --dk-text-soft: #aab6cf;
+  --dk-text-faint: #7f8dab;
+}
+
+html[data-theme="dark"] body { background: var(--dk-bg); color: var(--dk-text); }
+html[data-theme="dark"] * { border-color: var(--dk-border); }
+
+/* Surfaces */
+html[data-theme="dark"] .bg-white { background-color: var(--dk-surface); }
+html[data-theme="dark"] .bg-gray-50,
+html[data-theme="dark"] .bg-slate-50,
+html[data-theme="dark"] .bg-gray-50\/70 { background-color: var(--dk-surface-2); }
+html[data-theme="dark"] .bg-gray-100,
+html[data-theme="dark"] .bg-slate-100 { background-color: var(--dk-surface-3); }
+html[data-theme="dark"] .bg-white\/80 { background-color: rgba(11, 18, 32, 0.85); }
+html[data-theme="dark"] .bg-\[\#1b253c\] { background-color: #26365a; }
+
+/* Text */
+html[data-theme="dark"] .text-\[\#1b253c\],
+html[data-theme="dark"] .text-slate-900 { color: var(--dk-text); }
+html[data-theme="dark"] .text-gray-600,
+html[data-theme="dark"] .text-gray-500,
+html[data-theme="dark"] .text-slate-500 { color: var(--dk-text-soft); }
+html[data-theme="dark"] .text-gray-400,
+html[data-theme="dark"] .text-slate-400 { color: var(--dk-text-faint); }
+html[data-theme="dark"] .text-gray-300,
+html[data-theme="dark"] .text-slate-300,
+html[data-theme="dark"] .text-gray-200 { color: #4a5878; }
+html[data-theme="dark"] .placeholder\:text-gray-400::placeholder { color: var(--dk-text-faint); }
+
+/* Borders */
+html[data-theme="dark"] .border-gray-100,
+html[data-theme="dark"] .border-gray-200,
+html[data-theme="dark"] .border-slate-200 { border-color: var(--dk-border); }
+html[data-theme="dark"] .border-gray-300,
+html[data-theme="dark"] .border-slate-300 { border-color: var(--dk-border-strong); }
+html[data-theme="dark"] .border-\[\#1b253c\] { border-color: var(--dk-border-strong); }
+
+/* Hover / focus states */
+html[data-theme="dark"] .hover\:bg-gray-50:hover,
+html[data-theme="dark"] .hover\:bg-gray-100:hover,
+html[data-theme="dark"] .hover\:bg-slate-100:hover { background-color: var(--dk-surface-3); }
+html[data-theme="dark"] .hover\:bg-white\/80:hover { background-color: rgba(18, 27, 46, 0.95); }
+html[data-theme="dark"] .hover\:bg-\[\#1b253c\]:hover { background-color: #31456f; }
+html[data-theme="dark"] .hover\:text-\[\#1b253c\]:hover { color: #ffffff; }
+html[data-theme="dark"] .hover\:border-gray-200:hover,
+html[data-theme="dark"] .hover\:border-gray-300:hover { border-color: var(--dk-border-strong); }
+html[data-theme="dark"] .hover\:border-\[\#1b253c\]:hover { border-color: #5b79b8; }
+
+/* Custom component classes */
+html[data-theme="dark"] .header-blur {
+  background: rgba(11, 18, 32, 0.78);
+  border-bottom: 1px solid var(--dk-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+html[data-theme="dark"] .hero-glow {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(231, 147, 61, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 92% 100%, rgba(91, 121, 184, 0.14) 0%, transparent 45%),
+    linear-gradient(180deg, #0d1527 0%, #0b1220 55%, #0d1426 100%);
+}
+html[data-theme="dark"] .glass-panel {
+  background: linear-gradient(135deg, rgba(24, 35, 60, 0.9) 0%, rgba(16, 25, 44, 0.9) 100%);
+  border: 1px solid var(--dk-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea { color-scheme: dark; }
