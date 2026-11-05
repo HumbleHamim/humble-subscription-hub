@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "subscriptions",
+    "image": "/uploads/3fa95793-6752-4892-a0d3-606359d98883.webp",
+    "name": "Digital Subscriptions",
+    "count": 9
+  },
+  {
+    "slug": "earbuds",
+    "image": "/uploads/808b77dd-e02f-41d7-acea-f540ccc69596.webp",
+    "name": "Earbuds",
+    "count": 12
+  },
+  {
+    "slug": "neckbands",
+    "image": "/uploads/76888398-f6f7-4f8a-8d60-cad13dba580a.webp",
+    "name": "Neckbands",
+    "count": 6
+  },
+  {
+    "slug": "powerbanks",
+    "image": "/uploads/4ee04e2e-c177-4748-b25b-ccb80dccede9.webp",
+    "name": "Powerbanks",
+    "count": 19
+  },
+  {
+    "slug": "chargers",
+    "image": "/uploads/2b474432-c290-4fef-af65-f9caa70a8543.webp",
+    "name": "Chargers",
+    "count": 9
+  },
+  {
+    "slug": "cables",
+    "image": "/uploads/0c189a68-860c-4e97-ba44-4ee4558202d0.webp",
+    "name": "Cables",
+    "count": 7
+  },
+  {
+    "slug": "headphones",
+    "image": "/uploads/e91523f2-58a0-4a3a-a478-f98ed7c5e37f.webp",
+    "name": "Headphones",
+    "count": 3
+  },
+  {
+    "slug": "stylus",
+    "image": "/uploads/3d0c34eb-a771-4472-bd78-7c41ecda03d5.webp",
+    "name": "Stylus",
+    "count": 1
+  },
+  {
+    "slug": "phone-cases",
+    "name": "Phone Cases",
+    "image": "/uploads/52b8adb6-d61c-4e8b-916e-37801fb85b99.webp",
+    "count": 1
+  },
+  {
+    "slug": "portable-fans",
+    "name": "Portable Fans",
+    "image": "/uploads/03012ca0-6d3c-4c1e-98de-9b0030e62c5d.webp",
+    "count": 1
+  }
+]

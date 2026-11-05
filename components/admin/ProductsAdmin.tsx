@@ -6,7 +6,7 @@ import { categories } from '@/lib/data';
 import seedCatalog from '@/data/catalog-seed.json';
 import type { Product } from '@/lib/types';
 import { PublishPanel } from '@/components/admin/PublishPanel';
-import { deleteProduct, importCatalog, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
+import { deleteProduct, importCatalog, listCategoryDocs, listProducts, saveProduct, slugify, type ProductDoc } from '@/lib/admin';
 import {
   MAX_IMAGES,
   MAX_IMAGES_BYTES,
@@ -92,14 +92,14 @@ function splitLines(value: string): string[] {
 }
 
 /** Returns a ready-to-save product, or a message explaining what to fix. */
-function buildProduct(form: Form): ProductDoc | string {
+function buildProduct(form: Form, categoryList: { slug: string; name: string }[]): ProductDoc | string {
   const name = form.name.trim();
   if (!name) return 'Enter a product name.';
   const slug = form.slug.trim();
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
     return 'The slug may only contain lowercase letters, numbers and single dashes.';
   }
-  const category = categories.find((item) => item.slug === form.categorySlug);
+  const category = categoryList.find((item) => item.slug === form.categorySlug);
   if (!category) return 'Choose a category.';
 
   const price = Number(form.price);
@@ -228,6 +228,26 @@ export function ProductsAdmin() {
   }, []);
 
   const [importing, setImporting] = useState(false);
+  const [categoryList, setCategoryList] = useState<{ slug: string; name: string }[]>(
+    categories.map((c) => ({ slug: c.slug, name: c.name })),
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    listCategoryDocs()
+      .then((docs) => {
+        if (cancelled || docs.length === 0) return;
+        const merged = new Map(categories.map((c) => [c.slug, { slug: c.slug, name: c.name }]));
+        for (const doc of docs) merged.set(doc.slug, { slug: doc.slug, name: doc.name });
+        setCategoryList([...merged.values()]);
+      })
+      .catch(() => {
+        // Keep the built-in list if the database cannot be read.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function onImport() {
     if (!window.confirm(`Copy the ${catalog.length} built-in products into your database so you can edit them? Products already in the database are not changed.`)) {
@@ -253,10 +273,10 @@ export function ProductsAdmin() {
 
   const categoryOptions = useMemo(
     () =>
-      categories.filter((c) =>
+      categoryList.filter((c) =>
         form?.isPhysical ? c.slug !== 'subscriptions' : c.slug === 'subscriptions',
       ),
-    [form?.isPhysical],
+    [form?.isPhysical, categoryList],
   );
 
   function update(patch: Partial<Form>) {
@@ -277,7 +297,7 @@ export function ProductsAdmin() {
 
   async function onSave() {
     if (!form) return;
-    const result = buildProduct(form);
+    const result = buildProduct(form, categoryList);
     if (typeof result === 'string') {
       setFormError(result);
       return;
