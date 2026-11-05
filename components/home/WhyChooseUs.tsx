@@ -35,7 +35,7 @@ export function WhyChooseUs() {
             return (
               <div
                 key={reason.title}
-                className="rounded-2xl bg-white/60 p-4 shadow-[0_2px_24px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.7)] ring-1 ring-black/5 backdrop-blur-2xl backdrop-saturate-150 transition duration-300 hover:-translate-y-1 hover:bg-white/80 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-6"
+                className="rounded-2xl border border-gray-200 bg-white p-4 transition duration-300 hover:-translate-y-1 hover:border-gray-300 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-6"
               >
                 <div className="mb-3 grid size-10 place-items-center rounded-xl bg-theme-primary/12 sm:mb-4 sm:size-11">
                   <Icon className="size-5 text-theme-primary" strokeWidth={1.5} />

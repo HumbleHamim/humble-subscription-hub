@@ -335,5 +335,10 @@ html[data-theme="dark"] input,
 html[data-theme="dark"] select,
 html[data-theme="dark"] textarea { color-scheme: dark; }
 
+/* Small translucent white chips that sit on top of photos (e.g. wishlist heart) */
+html[data-theme="dark"] .bg-white\/85 { background-color: rgba(18, 20, 19, 0.85); }
+html[data-theme="dark"] .border-white\/60,
+html[data-theme="dark"] .border-white\/40 { border-color: rgba(255, 255, 255, 0.14); }
+
 /* Photos: a touch softer so white-background photos do not glare on dark cards */
 html[data-theme="dark"] img:not([src$=".svg"]) { filter: brightness(0.92); }
