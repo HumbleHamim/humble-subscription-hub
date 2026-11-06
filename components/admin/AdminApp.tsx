@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { useStore } from '@/components/store/StoreProvider';
 import { checkIsAdmin, listCustomers, type Customer } from '@/lib/admin';
 import { ProductsAdmin } from '@/components/admin/ProductsAdmin';
+import { CategoriesAdmin } from '@/components/admin/CategoriesAdmin';
+import { SiteAdmin } from '@/components/admin/SiteAdmin';
 
 type Status = 'loading' | 'signed-out' | 'denied' | 'ok' | 'error';
 
-const TABS = ['Dashboard', 'Products', 'Orders', 'Customers', 'Content'] as const;
+const TABS = ['Dashboard', 'Products', 'Categories', 'Orders', 'Customers', 'Content'] as const;
 type Tab = (typeof TABS)[number];
 
 // Covers the storefront header/footer so the admin area looks like its own app.
@@ -209,8 +211,10 @@ export function AdminApp() {
         )}
 
         {tab === 'Products' && <ProductsAdmin />}
+        {tab === 'Categories' && <CategoriesAdmin />}
+        {tab === 'Content' && <SiteAdmin />}
 
-        {(tab === 'Orders' || tab === 'Content') && (
+        {tab === 'Orders' && (
           <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
             <h2 className="text-lg font-black text-[#1b1e1d]">{tab}</h2>
             <p className="mt-1 text-sm text-slate-400">This section is built in a later step.</p>

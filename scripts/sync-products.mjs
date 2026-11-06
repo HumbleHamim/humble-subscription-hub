@@ -1,10 +1,11 @@
-// Runs before `next build`. Pulls the product catalog from Firestore (public read
-// rules) and writes it to data/products.json + data/categories.json, so the store
-// is built as fast static pages from whatever you saved in the admin panel.
+// Runs before `next build`. Pulls your admin-panel content from Firestore (public read
+// rules) and writes it into the data files the store is built from:
+//   products   -> data/products.json
+//   categories -> data/categories.json   (rename / hide / order / new categories)
+//   site text  -> data/site-settings.json (contact, links, announcements, ...)
 //
-// Safe by design: if the Firebase settings are missing (e.g. GitHub PR checks), the
-// database cannot be reached, or it has no products yet, the committed JSON files
-// are left untouched and the build carries on.
+// Safe by design: if the Firebase settings are missing (e.g. GitHub PR checks) or a part
+// cannot be read, the committed files are left as they are and the build carries on.
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -12,15 +13,16 @@ import path from 'node:path';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+const base = process.env.FIRESTORE_REST_BASE ?? 'https://firestore.googleapis.com';
 
-function log(message) {
-  console.log(`[sync-products] ${message}`);
-}
+const log = (message) => console.log(`[sync] ${message}`);
 
 if (!projectId || !apiKey) {
-  log('Firebase settings not set - keeping the committed product list.');
+  log('Firebase settings not set - keeping the committed content.');
   process.exit(0);
 }
+
+/* ---------- Firestore REST helpers ---------- */
 
 function fromValue(value) {
   if (!value || typeof value !== 'object') return null;
@@ -34,21 +36,21 @@ function fromValue(value) {
   if ('mapValue' in value) return fromFields(value.mapValue.fields ?? {});
   return null;
 }
+const fromFields = (fields) =>
+  Object.fromEntries(Object.entries(fields).map(([key, value]) => [key, fromValue(value)]));
 
-function fromFields(fields) {
-  return Object.fromEntries(Object.entries(fields).map(([key, value]) => [key, fromValue(value)]));
-}
+const documentsUrl = (suffix) =>
+  `${base}/v1/projects/${encodeURIComponent(projectId)}/databases/(default)/documents/${suffix}`;
 
-async function fetchAllProducts() {
+async function fetchCollection(name) {
   const docs = [];
   let pageToken = '';
   do {
     const url =
-      `${process.env.FIRESTORE_REST_BASE ?? "https://firestore.googleapis.com"}/v1/projects/${encodeURIComponent(projectId)}` +
-      `/databases/(default)/documents/products?pageSize=300&key=${encodeURIComponent(apiKey)}` +
+      `${documentsUrl(name)}?pageSize=300&key=${encodeURIComponent(apiKey)}` +
       (pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : '');
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`Firestore answered ${response.status}`);
+    if (!response.ok) throw new Error(`${name}: Firestore answered ${response.status}`);
     const body = await response.json();
     docs.push(...(body.documents ?? []));
     pageToken = body.nextPageToken ?? '';
@@ -56,10 +58,18 @@ async function fetchAllProducts() {
   return docs;
 }
 
+async function fetchDocument(pathInCollection) {
+  const response = await fetch(`${documentsUrl(pathInCollection)}?key=${encodeURIComponent(apiKey)}`);
+  if (response.status === 404) return null;
+  if (!response.ok) throw new Error(`${pathInCollection}: Firestore answered ${response.status}`);
+  return response.json();
+}
+
+/* ---------- images saved from the admin are data URLs: turn them into files ---------- */
+
 const uploadsDir = path.join(root, 'public', 'uploads');
 let writtenImages = 0;
 
-/** Photos saved from the admin panel are data URLs; turn them into real image files. */
 async function materializeImage(src) {
   if (typeof src !== 'string' || !src.startsWith('data:image/')) return src;
   const match = /^data:image\/(webp|jpeg|jpg|png);base64,(.+)$/s.exec(src);
@@ -74,6 +84,10 @@ async function materializeImage(src) {
 }
 
 const num = (value, fallback = 0) => (Number.isFinite(Number(value)) ? Number(value) : fallback);
+const readJson = async (file) => JSON.parse(await readFile(path.join(root, file), 'utf8'));
+const writeJson = (file, data) => writeFile(path.join(root, file), JSON.stringify(data, null, 2));
+
+/* ---------- products ---------- */
 
 async function toProduct(document, index) {
   const slug = document.name.split('/').pop();
@@ -108,46 +122,152 @@ async function toProduct(document, index) {
   };
 }
 
-try {
-  const documents = await fetchAllProducts();
-  if (documents.length === 0) {
-    log('No products in the database yet - keeping the committed product list.');
-    process.exit(0);
+async function loadProducts() {
+  try {
+    const documents = await fetchCollection('products');
+    if (documents.length === 0) {
+      log('No products in the database yet - using the committed product list.');
+      return null;
+    }
+    const all = await Promise.all(documents.map(toProduct));
+    const usable = all
+      .filter((product) => product.active && product.name && product.image)
+      .map(({ active, ...product }) => product);
+    if (usable.length === 0) {
+      log('Every database product is hidden or incomplete - using the committed product list.');
+      return null;
+    }
+    return usable;
+  } catch (error) {
+    log(`Could not read products (${error.message}) - using the committed product list.`);
+    return null;
+  }
+}
+
+/* ---------- categories ---------- */
+
+async function loadCategoryDocs() {
+  try {
+    const documents = await fetchCollection('categories');
+    return Promise.all(
+      documents.map(async (document, index) => {
+        const data = fromFields(document.fields ?? {});
+        const slug = document.name.split('/').pop();
+        return {
+          slug,
+          name: typeof data.name === 'string' && data.name.trim() ? data.name.trim() : null,
+          image: (await materializeImage(data.image)) || '',
+          order: Number.isFinite(Number(data.order)) ? Number(data.order) : 1000 + index,
+          hidden: data.hidden === true,
+        };
+      }),
+    );
+  } catch (error) {
+    log(`Could not read categories (${error.message}) - using the committed categories.`);
+    return [];
+  }
+}
+
+function applyCategories(products, committedCategories, categoryDocs) {
+  // slug -> { name, image, order, hidden }
+  const meta = new Map();
+  committedCategories.forEach((category, index) =>
+    meta.set(category.slug, { name: category.name, image: category.image, order: index, hidden: false }),
+  );
+  for (const doc of categoryDocs) {
+    const previous = meta.get(doc.slug);
+    meta.set(doc.slug, {
+      name: doc.name ?? previous?.name ?? doc.slug,
+      image: doc.image || previous?.image || '',
+      order: doc.order,
+      hidden: doc.hidden,
+    });
   }
 
-  const all = await Promise.all(documents.map(toProduct));
-  const products = all
-    .filter((product) => product.active && product.name && product.image)
-    .map(({ active, ...product }) => product);
-
-  if (products.length === 0) {
-    log('Every database product is hidden or incomplete - keeping the committed product list.');
-    process.exit(0);
-  }
-
-  // Categories: keep existing category cards, refresh counts, add new ones.
-  const categoriesPath = path.join(root, 'data', 'categories.json');
-  const existing = JSON.parse(await readFile(categoriesPath, 'utf8'));
-  const bySlug = new Map(existing.map((category) => [category.slug, category]));
-  const counts = new Map();
+  const visibleProducts = [];
   for (const product of products) {
-    counts.set(product.category.slug, (counts.get(product.category.slug) ?? 0) + 1);
-    if (!bySlug.has(product.category.slug)) {
-      bySlug.set(product.category.slug, {
-        slug: product.category.slug,
+    const found = meta.get(product.category.slug);
+    if (found?.hidden) continue; // hiding a category hides its products too
+    if (!found) {
+      meta.set(product.category.slug, {
         name: product.category.name,
         image: product.image,
-        count: 0,
+        order: 5000 + meta.size,
+        hidden: false,
       });
     }
+    visibleProducts.push({
+      ...product,
+      category: { slug: product.category.slug, name: meta.get(product.category.slug).name },
+    });
   }
-  const categories = [...bySlug.values()]
-    .map((category) => ({ ...category, count: counts.get(category.slug) ?? 0 }))
-    .filter((category) => category.count > 0);
 
-  await writeFile(path.join(root, 'data', 'products.json'), JSON.stringify(products, null, 2));
-  await writeFile(categoriesPath, JSON.stringify(categories, null, 2));
-  log(`Synced ${products.length} products, ${categories.length} categories, ${writtenImages} admin photos.`);
+  const counts = new Map();
+  const firstImage = new Map();
+  for (const product of visibleProducts) {
+    counts.set(product.category.slug, (counts.get(product.category.slug) ?? 0) + 1);
+    if (!firstImage.has(product.category.slug)) firstImage.set(product.category.slug, product.image);
+  }
+
+  const categories = [...meta.entries()]
+    .filter(([slug, value]) => !value.hidden && (counts.get(slug) ?? 0) > 0)
+    .sort((a, b) => a[1].order - b[1].order || a[1].name.localeCompare(b[1].name))
+    .map(([slug, value]) => ({
+      slug,
+      image: value.image || firstImage.get(slug) || '',
+      name: value.name,
+      count: counts.get(slug),
+    }));
+
+  return { products: visibleProducts, categories };
+}
+
+/* ---------- site settings ---------- */
+
+const SITE_KEYS = [
+  'name', 'shortName', 'tagline', 'description', 'phone', 'phoneDigits', 'whatsappDigits',
+  'email', 'facebook', 'instagram', 'address', 'announcements', 'navLinks',
+  'footerServiceLinks', 'footerAboutLinks',
+];
+
+async function syncSiteSettings() {
+  try {
+    const document = await fetchDocument('settings/site');
+    if (!document) {
+      log('No saved site settings yet - using the defaults.');
+      return;
+    }
+    const data = fromFields(document.fields ?? {});
+    const settings = {};
+    for (const key of SITE_KEYS) if (data[key] != null) settings[key] = data[key];
+    await writeJson('data/site-settings.json', settings);
+    log(`Synced site settings (${Object.keys(settings).length} fields).`);
+  } catch (error) {
+    log(`Could not read site settings (${error.message}) - using the defaults.`);
+  }
+}
+
+/* ---------- run ---------- */
+
+try {
+  const committedProducts = await readJson('data/products.json');
+  const committedCategories = await readJson('data/categories.json');
+
+  const fromDatabase = await loadProducts();
+  const categoryDocs = await loadCategoryDocs();
+  const result = applyCategories(fromDatabase ?? committedProducts, committedCategories, categoryDocs);
+
+  if (result.products.length === 0) {
+    log('Nothing would be left on the store (everything hidden?) - keeping the committed content.');
+  } else {
+    await writeJson('data/products.json', result.products);
+    await writeJson('data/categories.json', result.categories);
+    log(
+      `Synced ${result.products.length} products, ${result.categories.length} categories, ` +
+        `${writtenImages} admin photos.`,
+    );
+  }
+  await syncSiteSettings();
 } catch (error) {
-  log(`Could not sync from Firebase (${error instanceof Error ? error.message : error}) - keeping the committed product list.`);
+  log(`Sync stopped (${error instanceof Error ? error.message : error}) - keeping the committed content.`);
 }

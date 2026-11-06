@@ -167,3 +167,102 @@ export async function savePublishHook(hookUrl: string): Promise<void> {
   const { db } = requireFirebase();
   await setDoc(doc(db, 'settings', 'publish'), { hookUrl, updatedAt: serverTimestamp() });
 }
+
+/* ---------------- Categories (Firestore collection: categories/{slug}) ---------------- */
+
+export type CategoryDoc = {
+  slug: string;
+  name: string;
+  image: string;
+  order: number;
+  hidden: boolean;
+};
+
+export async function listCategoryDocs(): Promise<CategoryDoc[]> {
+  const { db } = requireFirebase();
+  const snap = await getDocs(query(collection(db, 'categories'), limit(200)));
+  return snap.docs
+    .map((entry, index) => {
+      const d = entry.data();
+      return {
+        slug: entry.id,
+        name: String(d.name ?? entry.id),
+        image: String(d.image ?? ''),
+        order: Number.isFinite(Number(d.order)) ? Number(d.order) : 1000 + index,
+        hidden: Boolean(d.hidden),
+      } satisfies CategoryDoc;
+    })
+    .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
+}
+
+export async function saveCategoryDoc(category: CategoryDoc): Promise<void> {
+  const { db } = requireFirebase();
+  await setDoc(
+    doc(db, 'categories', category.slug),
+    { ...category, updatedAt: serverTimestamp() },
+    { merge: true },
+  );
+}
+
+export async function saveCategoryOrder(categories: CategoryDoc[]): Promise<void> {
+  const { db } = requireFirebase();
+  const batch = writeBatch(db);
+  categories.forEach((category, index) => {
+    batch.set(doc(db, 'categories', category.slug), { order: index, updatedAt: serverTimestamp() }, { merge: true });
+  });
+  await batch.commit();
+}
+
+/** Copies the built-in categories into Firestore; ones that already exist are skipped. */
+export async function importCategories(seed: { slug: string; name: string; image: string }[]): Promise<number> {
+  const { db } = requireFirebase();
+  const existing = new Set((await getDocs(collection(db, 'categories'))).docs.map((entry) => entry.id));
+  const fresh = seed.filter((category) => !existing.has(category.slug));
+  if (fresh.length === 0) return 0;
+  const batch = writeBatch(db);
+  fresh.forEach((category, index) => {
+    batch.set(doc(db, 'categories', category.slug), {
+      slug: category.slug,
+      name: category.name,
+      image: category.image,
+      order: existing.size + index,
+      hidden: false,
+      updatedAt: serverTimestamp(),
+    });
+  });
+  await batch.commit();
+  return fresh.length;
+}
+
+/* ---------------- Site settings (Firestore: settings/site, publicly readable) ---------------- */
+
+export type LinkItem = { href: string; label: string };
+
+export type SiteSettings = {
+  name: string;
+  shortName: string;
+  tagline: string;
+  description: string;
+  phone: string;
+  phoneDigits: string;
+  whatsappDigits: string;
+  email: string;
+  facebook: string;
+  instagram: string;
+  address: string;
+  announcements: string[];
+  navLinks: LinkItem[];
+  footerServiceLinks: LinkItem[];
+  footerAboutLinks: LinkItem[];
+};
+
+export async function getSiteSettings(): Promise<Partial<SiteSettings> | null> {
+  const { db } = requireFirebase();
+  const snap = await getDoc(doc(db, 'settings', 'site'));
+  return snap.exists() ? (snap.data() as Partial<SiteSettings>) : null;
+}
+
+export async function saveSiteSettings(settings: SiteSettings): Promise<void> {
+  const { db } = requireFirebase();
+  await setDoc(doc(db, 'settings', 'site'), { ...settings, updatedAt: serverTimestamp() });
+}

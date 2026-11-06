@@ -27,12 +27,19 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Orders and content rules are added in their own steps.
-    // Private admin settings (e.g. the publish link).
+    // Anyone can read the public site settings; the publish link stays admin-only.
     match /settings/{id} {
-      allow read, write: if isAdmin();
+      allow read: if id == 'site' || isAdmin();
+      allow write: if isAdmin();
     }
 
+    // Anyone can read categories; only admins can change them.
+    match /categories/{slug} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Orders rules are added in their own step.
     match /{document=**} {
       allow read, write: if false;
     }
