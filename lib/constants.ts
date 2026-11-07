@@ -18,6 +18,7 @@ type SiteOverrides = Partial<{
   navLinks: NavLink[];
   footerServiceLinks: NavLink[];
   footerAboutLinks: NavLink[];
+  footerBottomLinks: NavLink[];
 }>;
 
 // Written at build time from the admin panel (data/site-settings.json). Empty = defaults below.
@@ -112,6 +113,12 @@ const footerServiceDefaults: NavLink[] = [
   { href: '/contact', label: 'Contact Us' },
 ];
 
+const footerBottomDefaults: NavLink[] = [
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms & Conditions' },
+  { href: '/refund-policy', label: 'Refund Policy' },
+];
+
 const footerAboutDefaults: NavLink[] = [
   { href: '/about', label: 'About Us' },
   { href: '/story', label: 'Our Story' },
@@ -123,3 +130,4 @@ export const announcements = stringList(overrides.announcements, announcementDef
 export const navLinks = linkList(overrides.navLinks, navLinkDefaults);
 export const footerServiceLinks = linkList(overrides.footerServiceLinks, footerServiceDefaults);
 export const footerAboutLinks = linkList(overrides.footerAboutLinks, footerAboutDefaults);
+export const footerBottomLinks = linkList(overrides.footerBottomLinks, footerBottomDefaults);

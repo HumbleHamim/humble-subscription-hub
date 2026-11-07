@@ -6,6 +6,7 @@ import {
   getDocs,
   limit,
   query,
+  where,
   serverTimestamp,
   setDoc,
   writeBatch,
@@ -254,6 +255,7 @@ export type SiteSettings = {
   navLinks: LinkItem[];
   footerServiceLinks: LinkItem[];
   footerAboutLinks: LinkItem[];
+  footerBottomLinks: LinkItem[];
 };
 
 export async function getSiteSettings(): Promise<Partial<SiteSettings> | null> {
@@ -265,4 +267,48 @@ export async function getSiteSettings(): Promise<Partial<SiteSettings> | null> {
 export async function saveSiteSettings(settings: SiteSettings): Promise<void> {
   const { db } = requireFirebase();
   await setDoc(doc(db, 'settings', 'site'), { ...settings, updatedAt: serverTimestamp() });
+}
+
+/** Deletes a category. If `withProducts` is true, every product in it is deleted too. */
+export async function deleteCategory(slug: string, withProducts: boolean): Promise<number> {
+  const { db } = requireFirebase();
+  let removed = 0;
+  if (withProducts) {
+    const snap = await getDocs(query(collection(db, 'products'), where('category.slug', '==', slug)));
+    for (let i = 0; i < snap.docs.length; i += 400) {
+      const batch = writeBatch(db);
+      for (const entry of snap.docs.slice(i, i + 400)) batch.delete(entry.ref);
+      await batch.commit();
+    }
+    removed = snap.docs.length;
+  }
+  await deleteDoc(doc(db, 'categories', slug));
+  return removed;
+}
+
+/* ---------------- Pages (Firestore collection: pages/{slug}, publicly readable) ---------------- */
+
+export type PageDoc = {
+  title: string;
+  subtitle: string;
+  updated: string;
+  sections: { heading: string; paragraphs: string[]; bullets: string[] }[];
+  steps?: { title: string; text: string }[];
+};
+
+export async function getPageDoc(slug: string): Promise<PageDoc | null> {
+  const { db } = requireFirebase();
+  const snap = await getDoc(doc(db, 'pages', slug));
+  return snap.exists() ? (snap.data() as PageDoc) : null;
+}
+
+export async function savePageDoc(slug: string, page: PageDoc): Promise<void> {
+  const { db } = requireFirebase();
+  await setDoc(doc(db, 'pages', slug), { ...page, updatedAt: serverTimestamp() });
+}
+
+/** Removes the saved edits so the page goes back to its original text. */
+export async function resetPageDoc(slug: string): Promise<void> {
+  const { db } = requireFirebase();
+  await deleteDoc(doc(db, 'pages', slug));
 }

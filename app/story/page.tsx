@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function StoryPage() {
   return (
     <ContentPage
+      pageKey="story"
       title="Our Story"
       subtitle="From one frustrated subscription renewal to a store serving thousands of customers across Bangladesh."
       sections={[

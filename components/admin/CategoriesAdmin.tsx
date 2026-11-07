@@ -5,8 +5,10 @@ import { useStore } from '@/components/store/StoreProvider';
 import { PublishPanel } from '@/components/admin/PublishPanel';
 import { Field, inputClass } from '@/components/admin/ui';
 import {
+  deleteCategory,
   importCategories,
   listCategoryDocs,
+  listProducts,
   saveCategoryDoc,
   saveCategoryOrder,
   slugify,
@@ -21,6 +23,7 @@ export function CategoriesAdmin() {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [names, setNames] = useState<Record<string, string>>({});
+  const [counts, setCounts] = useState<Record<string, number>>({});
 
   // "Add category" form
   const [newName, setNewName] = useState('');
@@ -36,6 +39,14 @@ export function CategoriesAdmin() {
       setItems(rows);
       setNames(Object.fromEntries(rows.map((row) => [row.slug, row.name])));
       setError('');
+      try {
+        const products = await listProducts();
+        const next: Record<string, number> = {};
+        for (const product of products) next[product.category.slug] = (next[product.category.slug] ?? 0) + 1;
+        setCounts(next);
+      } catch {
+        // Counts are a convenience; the list still works without them.
+      }
     } catch {
       setError('Could not load categories. Publish the latest Firestore rules and try again.');
     }
@@ -71,6 +82,18 @@ export function CategoriesAdmin() {
     } finally {
       setBusy(false);
     }
+  }
+
+  async function onDelete(item: CategoryDoc) {
+    const count = counts[item.slug] ?? 0;
+    const message =
+      count > 0
+        ? `Delete "${item.name}" AND its ${count} product${count === 1 ? '' : 's'}?\n\nThis cannot be undone. To keep the products, press Cancel and use Hide instead.`
+        : `Delete the category "${item.name}"?`;
+    if (!window.confirm(message)) return;
+    await run(async () => {
+      await deleteCategory(item.slug, count > 0);
+    }, count > 0 ? `Deleted "${item.name}" and ${count} product(s)` : `Deleted "${item.name}"`);
   }
 
   function move(index: number, direction: -1 | 1) {
@@ -139,7 +162,7 @@ export function CategoriesAdmin() {
 
       <h2 className="mb-1 text-lg font-black text-[#1b1e1d]">Categories</h2>
       <p className="mb-4 text-sm text-slate-500">
-        Rename, hide, add and reorder categories. Hiding a category also hides its products from the store.
+        Rename, hide, add and reorder categories. Hiding a category also hides its products from the store. Deleting removes it for good.
         Changes show on the store after you tap <strong>Publish to website</strong>.
       </p>
 
@@ -222,7 +245,9 @@ export function CategoriesAdmin() {
                     onChange={(event) => setNames((current) => ({ ...current, [item.slug]: event.target.value }))}
                     aria-label={`Name of ${item.slug}`}
                   />
-                  <p className="mt-1 text-xs text-slate-400">/{item.slug}</p>
+                  <p className="mt-1 text-xs text-slate-400">
+                    /{item.slug} · {counts[item.slug] ?? 0} product{(counts[item.slug] ?? 0) === 1 ? '' : 's'}
+                  </p>
                 </div>
 
                 {changed ? (
@@ -248,6 +273,15 @@ export function CategoriesAdmin() {
                   className="rounded-full border border-slate-300 px-4 py-1.5 text-xs font-bold disabled:opacity-50"
                 >
                   {item.hidden ? 'Show' : 'Hide'}
+                </button>
+
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => void onDelete(item)}
+                  className="rounded-full border border-red-200 px-4 py-1.5 text-xs font-bold text-red-600 disabled:opacity-50"
+                >
+                  Delete
                 </button>
               </li>
             );

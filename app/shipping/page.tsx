@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function ShippingPage() {
   return (
     <ContentPage
+      pageKey="shipping"
       title="Shipping & Delivery"
       subtitle="Clear timelines and charges — no surprises at the door."
       updated="1 November 2026"

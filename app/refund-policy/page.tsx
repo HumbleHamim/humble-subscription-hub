@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function RefundPolicyPage() {
   return (
     <ContentPage
+      pageKey="refund-policy"
       title="Return & Refund Policy"
       subtitle="Fair, written in plain language, and applied the same way for every customer."
       updated="1 November 2026"

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { categories } from '@/lib/data';
 import { FacebookIcon, InstagramIcon } from '@/components/ui/SocialIcons';
-import { footerAboutLinks, footerServiceLinks, site } from '@/lib/constants';
+import { footerAboutLinks, footerBottomLinks, footerServiceLinks, site } from '@/lib/constants';
 import { Logo } from '@/components/ui/Logo';
 
 function WhatsAppIcon({ className = 'h-[18px] w-[18px]' }: { className?: string }) {
@@ -105,21 +105,13 @@ export function Footer() {
             © 2026 <span className="font-semibold text-white">{site.name}</span>. All rights reserved.
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs">
-            <li>
-              <Link href="/privacy" className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/terms" className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
-                Terms &amp; Conditions
-              </Link>
-            </li>
-            <li>
-              <Link href="/refund-policy" className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
-                Refund Policy
-              </Link>
-            </li>
+            {footerBottomLinks.map((link) => (
+              <li key={`${link.href}-${link.label}`}>
+                <Link href={link.href} className="inline-flex rounded-sm py-1.5 text-[#8b928f] transition-colors hover:text-white md:py-1">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ChevronRight } from 'lucide-react';
+import { getPageOverride } from '@/lib/pages';
 
 export type ContentSection = {
   heading: string;
@@ -9,18 +10,27 @@ export type ContentSection = {
 };
 
 export function ContentPage({
-  title,
-  subtitle,
-  updated,
-  sections,
+  pageKey,
+  title: titleProp,
+  subtitle: subtitleProp,
+  updated: updatedProp,
+  sections: sectionsProp,
   children,
 }: {
+  /** Name used by the admin panel to save edits for this page. */
+  pageKey?: string;
   title: string;
   subtitle: string;
   updated?: string;
   sections?: ContentSection[];
   children?: ReactNode;
 }) {
+  const override = pageKey ? getPageOverride(pageKey) : undefined;
+  const title = override?.title ?? titleProp;
+  const subtitle = override?.subtitle ?? subtitleProp;
+  const updated = override?.updated !== undefined ? override.updated : updatedProp;
+  const sections = override?.sections ?? sectionsProp;
+
   return (
     <div className="min-h-screen bg-gray-50/70 pb-16">
       <section className="relative overflow-hidden bg-[#1b1e1d] py-12 text-white sm:py-16">

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <ContentPage
+      pageKey="privacy"
       title="Privacy Policy"
       subtitle="We collect only what we need to deliver your order, and we never sell your data."
       updated="1 November 2026"
