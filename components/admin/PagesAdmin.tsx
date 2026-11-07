@@ -26,7 +26,15 @@ type Form = {
   steps: { title: string; text: string }[];
 };
 
-const toForm = (page: Partial<PageDoc> | undefined): Form => ({
+type PageSource = {
+  title?: string;
+  subtitle?: string;
+  updated?: string;
+  sections?: { heading: string; paragraphs?: string[]; bullets?: string[] }[];
+  steps?: { title: string; text: string }[];
+};
+
+const toForm = (page: PageSource | undefined): Form => ({
   title: page?.title ?? '',
   subtitle: page?.subtitle ?? '',
   updated: page?.updated ?? '',
