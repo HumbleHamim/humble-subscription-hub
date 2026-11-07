@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ContentPage } from '@/components/content/ContentPage';
+import { getPageOverride } from '@/lib/pages';
 
 export const metadata: Metadata = {
   title: 'How to Order',
@@ -31,8 +32,10 @@ const steps = [
 ];
 
 export default function GuidePage() {
+  const stepList = getPageOverride('guide')?.steps ?? steps;
   return (
     <ContentPage
+      pageKey="guide"
       title="How to Order"
       subtitle="Ordering takes about two minutes. Here is exactly what happens after you click checkout."
       sections={[
@@ -70,7 +73,7 @@ export default function GuidePage() {
       ]}
     >
       <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {steps.map((step, index) => (
+        {stepList.map((step, index) => (
           <div
             key={step.title}
             className="rounded-2xl border border-gray-100 bg-gray-50/70 p-4"

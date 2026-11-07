@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <ContentPage
+      pageKey="terms"
       title="Terms & Conditions"
       subtitle="By ordering from Humble Subscription Hub you agree to the terms below."
       updated="1 November 2026"

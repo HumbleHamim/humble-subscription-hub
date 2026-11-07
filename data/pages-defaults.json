@@ -1,0 +1,328 @@
+{
+  "about": {
+    "title": "About Us",
+    "subtitle": "We make premium digital subscriptions and dependable everyday tech affordable for everyone in Bangladesh.",
+    "sections": [
+      {
+        "heading": "Who we are",
+        "paragraphs": [
+          "Humble Subscription Hub is a Dhaka-based store built around a simple belief: great entertainment, tools and gadgets should not come with a premium markup. We started with a handful of streaming plans and grew into a full catalog of digital subscriptions and everyday tech.",
+          "Every order is handled by real people. From the moment you check out to the day your subscription renews, someone on our team is available to help."
+        ]
+      },
+      {
+        "heading": "What we sell",
+        "paragraphs": [
+          "Our catalog spans two sides of the same idea — things you enjoy and things you use every day."
+        ],
+        "bullets": [
+          "Digital subscriptions: streaming, music, design, AI and productivity tools with instant activation.",
+          "Everyday tech: earbuds, neckbands, headphones, power banks, chargers, cables, styluses and accessories.",
+          "Genuine products sourced through authorised channels, checked before dispatch."
+        ]
+      },
+      {
+        "heading": "How we work",
+        "paragraphs": [
+          "We keep pricing transparent. The price you see is the price you pay, with delivery shown clearly at checkout and no surprise charges. Payments run through bKash, Nagad or cash on delivery.",
+          "If something goes wrong, we fix it. Our refund and replacement policy is written in plain language so you always know where you stand."
+        ]
+      },
+      {
+        "heading": "Why Humble",
+        "paragraphs": [
+          "We are not trying to be the biggest store — just the one you come back to. That means honest advice, quick replies, fair prices and support that does not disappear after checkout."
+        ]
+      }
+    ]
+  },
+  "guide": {
+    "steps": [
+      {
+        "title": "Pick your item",
+        "text": "Browse subscriptions or products. Choose a plan or variant — the price updates instantly."
+      },
+      {
+        "title": "Add to cart",
+        "text": "Use Add to Cart to keep browsing, or Buy Now to head straight to checkout."
+      },
+      {
+        "title": "Enter details",
+        "text": "Give us your name, phone and delivery address. For subscriptions we only need your contact info."
+      },
+      {
+        "title": "Pay securely",
+        "text": "Choose bKash, Nagad or cash on delivery. For mobile payments, send the total and enter the transaction ID."
+      },
+      {
+        "title": "Get activated",
+        "text": "Our team verifies the payment and activates your subscription, usually within 15–30 minutes."
+      }
+    ],
+    "title": "How to Order",
+    "subtitle": "Ordering takes about two minutes. Here is exactly what happens after you click checkout.",
+    "sections": [
+      {
+        "heading": "Paying with bKash or Nagad",
+        "paragraphs": [
+          "At checkout, select your wallet and you will see the payment number and total amount. Send the exact amount using the Send Money option, then paste the transaction ID into the field provided.",
+          "We verify every payment manually. If the transaction ID does not match, we will message you on WhatsApp before dispatch or activation."
+        ],
+        "bullets": [
+          "Use Send Money — not Payment or Cash Out.",
+          "Keep the transaction ID from your confirmation SMS.",
+          "No extra charge is added for mobile wallet payments."
+        ]
+      },
+      {
+        "heading": "Cash on delivery",
+        "paragraphs": [
+          "Cash on delivery is available for physical products anywhere in Bangladesh. Keep the exact amount ready for the rider — our team cannot always provide change."
+        ]
+      },
+      {
+        "heading": "Digital subscriptions",
+        "paragraphs": [
+          "Subscriptions are delivered digitally, so no shipping is charged. Once payment is confirmed, we activate the plan on your account or send the access details by WhatsApp and email.",
+          "If you are buying a shared plan, you will receive an invite link. Accept it within 24 hours so the slot is not released."
+        ]
+      },
+      {
+        "heading": "Changing or cancelling an order",
+        "paragraphs": [
+          "Message us on WhatsApp as soon as possible. We can change an address or cancel an order before it is dispatched or activated. Once a subscription is activated, it cannot be cancelled."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "We collect only what we need to deliver your order, and we never sell your data.",
+    "updated": "1 November 2026",
+    "sections": [
+      {
+        "heading": "Information we collect",
+        "paragraphs": [
+          "When you place an order we ask for your name, phone number, email and delivery address. For mobile payments we also receive the transaction ID you provide. For subscriptions we may need the account email associated with the service."
+        ],
+        "bullets": [
+          "Contact details: name, phone, email",
+          "Delivery details: address, city, district",
+          "Order details: items, plan, amount, payment method",
+          "Optional: order notes you choose to share"
+        ]
+      },
+      {
+        "heading": "How we use it",
+        "paragraphs": [
+          "Your information is used to confirm orders, arrange delivery, activate subscriptions and provide support. We may contact you about an order by phone, WhatsApp or email.",
+          "With your consent we may send occasional offers. You can opt out at any time by replying STOP or messaging support."
+        ]
+      },
+      {
+        "heading": "Who we share it with",
+        "paragraphs": [
+          "We share the minimum necessary with delivery partners to get your parcel to you. Payment information is handled by bKash, Nagad or your bank — we do not store card numbers.",
+          "We do not sell, rent or trade personal information with advertisers or data brokers."
+        ]
+      },
+      {
+        "heading": "This demo storefront",
+        "paragraphs": [
+          "This build is a front-end demonstration. Cart, wishlist, account details and orders are stored in your browser localStorage only and are never transmitted to a server. Clearing your browser data removes them permanently."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": [
+          "You can ask us to correct or delete the information we hold about you. Contact support and we will action verified requests within 7 days, subject to legal record-keeping requirements."
+        ]
+      },
+      {
+        "heading": "Cookies",
+        "paragraphs": [
+          "We use essential browser storage to keep your cart and session working. No third-party advertising cookies are used in this demo."
+        ]
+      }
+    ]
+  },
+  "refund-policy": {
+    "title": "Return & Refund Policy",
+    "subtitle": "Fair, written in plain language, and applied the same way for every customer.",
+    "updated": "1 November 2026",
+    "sections": [
+      {
+        "heading": "Physical products",
+        "paragraphs": [
+          "Physical products can be returned within 7 days of delivery if they are unused, in their original packaging and complete with all accessories. Contact us on WhatsApp before sending anything back."
+        ],
+        "bullets": [
+          "Dead-on-arrival items are replaced at our cost.",
+          "Manufacturer warranty applies where stated on the product page.",
+          "Items damaged by misuse, water or unauthorised repair are not eligible.",
+          "Return shipping is free when the fault is ours."
+        ]
+      },
+      {
+        "heading": "Digital subscriptions",
+        "paragraphs": [
+          "Subscriptions are activated immediately, so they cannot be returned once the plan is live on your account. However, if an activation fails or the service does not work as described, we will fix it or refund you in full."
+        ],
+        "bullets": [
+          "Wrong account activated by us: corrected or refunded.",
+          "Shared plan slot released by you: not refundable.",
+          "Service discontinued by the provider: pro-rated refund."
+        ]
+      },
+      {
+        "heading": "How refunds are issued",
+        "paragraphs": [
+          "Approved refunds are sent back through the original payment method. bKash and Nagad refunds usually arrive within 24 hours; cash-on-delivery orders are refunded via mobile wallet or bank transfer.",
+          "If you paid by card, refunds can take 5–10 business days depending on your bank."
+        ]
+      },
+      {
+        "heading": "How to start a return",
+        "paragraphs": [
+          "Message us on WhatsApp with your order ID and a short description of the issue. Add photos or a short video if the item is damaged. We will confirm eligibility and arrange pickup or replacement."
+        ]
+      },
+      {
+        "heading": "Warranty claims",
+        "paragraphs": [
+          "Products sold with an official warranty carry the warranty stated on the product page. Claims are processed with the brand service centre; we help coordinate the process and keep you updated."
+        ]
+      }
+    ]
+  },
+  "shipping": {
+    "title": "Shipping & Delivery",
+    "subtitle": "Clear timelines and charges — no surprises at the door.",
+    "updated": "1 November 2026",
+    "sections": [
+      {
+        "heading": "Delivery charges",
+        "paragraphs": [
+          "Delivery is calculated at checkout based on your district and cart total. Orders of ৳3,000 or more ship free anywhere in Bangladesh."
+        ],
+        "bullets": [
+          "Inside Dhaka: ৳60",
+          "Outside Dhaka: ৳120",
+          "Free delivery on orders over ৳3,000",
+          "Digital subscriptions: no delivery charge"
+        ]
+      },
+      {
+        "heading": "Timelines",
+        "paragraphs": [
+          "Physical orders are packed within a few hours of confirmation and handed to our delivery partner the same day where possible."
+        ],
+        "bullets": [
+          "Inside Dhaka: 1–2 business days",
+          "Outside Dhaka: 2–4 business days",
+          "Digital subscriptions: 15–30 minutes after payment verification",
+          "Custom or bulk orders: timeline confirmed on WhatsApp"
+        ]
+      },
+      {
+        "heading": "Order tracking",
+        "paragraphs": [
+          "You will receive a confirmation call or WhatsApp message once your order is confirmed. Tracking details are shared when the parcel leaves our warehouse.",
+          "You can also review your order history any time from your profile page."
+        ]
+      },
+      {
+        "heading": "Failed deliveries",
+        "paragraphs": [
+          "If nobody is available to receive the parcel, the rider will call the number you provided. After two failed attempts the order is returned to us and a re-delivery charge may apply.",
+          "Please double-check your phone number and address at checkout — most delivery delays come from incomplete addresses."
+        ]
+      },
+      {
+        "heading": "Damaged or missing items",
+        "paragraphs": [
+          "Inspect your parcel in front of the rider where possible. If something is damaged or missing, message us within 48 hours with photos and we will arrange a replacement or refund."
+        ]
+      }
+    ]
+  },
+  "story": {
+    "title": "Our Story",
+    "subtitle": "From one frustrated subscription renewal to a store serving thousands of customers across Bangladesh.",
+    "sections": [
+      {
+        "heading": "The problem",
+        "paragraphs": [
+          "It started the way most small businesses do — with an annoyance. Paying for a streaming service in Bangladesh usually meant an international card, a currency conversion fee and a price that never quite matched what the service was worth locally.",
+          "We figured there had to be a better way. So we tested a few plans with friends, charged a fair price and handled activation ourselves. Word spread faster than we expected."
+        ]
+      },
+      {
+        "heading": "Growing the catalog",
+        "paragraphs": [
+          "As more people asked for more services, we added them one at a time — music, design tools, AI assistants, storage and more. Each addition came with the same rule: only offer it if we can support it properly.",
+          "The tech side of the store arrived almost by accident. Customers kept asking where to find reliable earbuds and power banks that were not overpriced. We started sourcing a small selection, and it grew from there."
+        ]
+      },
+      {
+        "heading": "Where we are now",
+        "paragraphs": [
+          "Today Humble Subscription Hub ships nationwide and activates subscriptions within minutes. We remain a small, hands-on team — the same people who answer your WhatsApp message also pack your order.",
+          "We are still growing, still adding categories and still keeping the promise we started with: honest prices, genuine access and support you can actually reach."
+        ]
+      },
+      {
+        "heading": "What comes next",
+        "paragraphs": [
+          "We are working on faster renewals, more payment options and a loyalty programme that rewards the customers who have stuck with us. If you have an idea for something we should stock, tell us — most of our catalog came from customer requests."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "subtitle": "By ordering from Humble Subscription Hub you agree to the terms below.",
+    "updated": "1 November 2026",
+    "sections": [
+      {
+        "heading": "Orders and acceptance",
+        "paragraphs": [
+          "An order is an offer to buy. We confirm it after payment verification and stock check. If an item is unavailable we will contact you to offer an alternative, a delay or a full refund.",
+          "Prices and availability can change without notice. The price shown at the time you place your order is the price that applies."
+        ]
+      },
+      {
+        "heading": "Payments",
+        "paragraphs": [
+          "We accept bKash, Nagad and cash on delivery. For mobile payments, the transaction ID you provide must match the amount and sender. Orders with unverifiable payments are held until resolved.",
+          "All prices are in Bangladeshi Taka and include applicable taxes unless stated otherwise."
+        ]
+      },
+      {
+        "heading": "Subscriptions",
+        "paragraphs": [
+          "Subscription products are activated on the account details you provide. You are responsible for the accuracy of those details. Sharing or reselling access outside the purchased plan is not permitted and may result in termination without refund.",
+          "Renewal reminders are a courtesy, not a guarantee. It is your responsibility to renew before your plan expires."
+        ]
+      },
+      {
+        "heading": "Product information",
+        "paragraphs": [
+          "We describe products as accurately as possible, including specifications and warranty details supplied by the manufacturer. Colours may differ slightly from photos due to lighting and screen settings."
+        ]
+      },
+      {
+        "heading": "Limitation of liability",
+        "paragraphs": [
+          "Our liability for any order is limited to the amount you paid for it. We are not liable for indirect losses such as lost data, lost income or missed deadlines arising from product failure or service interruption."
+        ]
+      },
+      {
+        "heading": "Governing law",
+        "paragraphs": [
+          "These terms are governed by the laws of Bangladesh. Any dispute will first be addressed through good-faith communication with our support team."
+        ]
+      }
+    ]
+  }
+}

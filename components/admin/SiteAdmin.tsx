@@ -5,7 +5,14 @@ import { useStore } from '@/components/store/StoreProvider';
 import { PublishPanel } from '@/components/admin/PublishPanel';
 import { Card, Field, inputClass } from '@/components/admin/ui';
 import { getSiteSettings, saveSiteSettings, type LinkItem, type SiteSettings } from '@/lib/admin';
-import { announcements, footerAboutLinks, footerServiceLinks, navLinks, site } from '@/lib/constants';
+import {
+  announcements,
+  footerAboutLinks,
+  footerBottomLinks,
+  footerServiceLinks,
+  navLinks,
+  site,
+} from '@/lib/constants';
 
 /** What the store shows right now (defaults + anything already published). */
 function currentSettings(): SiteSettings {
@@ -25,6 +32,7 @@ function currentSettings(): SiteSettings {
     navLinks: navLinks.map((link) => ({ ...link })),
     footerServiceLinks: footerServiceLinks.map((link) => ({ ...link })),
     footerAboutLinks: footerAboutLinks.map((link) => ({ ...link })),
+    footerBottomLinks: footerBottomLinks.map((link) => ({ ...link })),
   };
 }
 
@@ -41,6 +49,7 @@ function validate(form: SiteSettings): string {
     ['Menu', form.navLinks],
     ['Customer service links', form.footerServiceLinks],
     ['About links', form.footerAboutLinks],
+    ['Bottom bar links', form.footerBottomLinks],
   ] as const) {
     if (list.length === 0) return `${title}: keep at least one link.`;
     for (const link of list) {
@@ -149,6 +158,7 @@ export function SiteAdmin() {
         navLinks: form.navLinks.map((l) => ({ label: l.label.trim(), href: l.href.trim() })),
         footerServiceLinks: form.footerServiceLinks.map((l) => ({ label: l.label.trim(), href: l.href.trim() })),
         footerAboutLinks: form.footerAboutLinks.map((l) => ({ label: l.label.trim(), href: l.href.trim() })),
+        footerBottomLinks: form.footerBottomLinks.map((l) => ({ label: l.label.trim(), href: l.href.trim() })),
       });
       notify('Saved. Tap Publish to website to put it live.', 'success');
     } catch {
@@ -269,6 +279,11 @@ export function SiteAdmin() {
           title="Footer: About"
           links={form.footerAboutLinks}
           onChange={(links) => set('footerAboutLinks', links)}
+        />
+        <LinkEditor
+          title="Footer: bottom bar (small links next to the copyright)"
+          links={form.footerBottomLinks}
+          onChange={(links) => set('footerBottomLinks', links)}
         />
       </Card>
 

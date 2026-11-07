@@ -3,6 +3,7 @@
 //   products   -> data/products.json
 //   categories -> data/categories.json   (rename / hide / order / new categories)
 //   site text  -> data/site-settings.json (contact, links, announcements, ...)
+//   pages      -> data/pages.json         (About, Guide, Policies ... edited text)
 //
 // Safe by design: if the Firebase settings are missing (e.g. GitHub PR checks) or a part
 // cannot be read, the committed files are left as they are and the build carries on.
@@ -227,7 +228,7 @@ function applyCategories(products, committedCategories, categoryDocs) {
 const SITE_KEYS = [
   'name', 'shortName', 'tagline', 'description', 'phone', 'phoneDigits', 'whatsappDigits',
   'email', 'facebook', 'instagram', 'address', 'announcements', 'navLinks',
-  'footerServiceLinks', 'footerAboutLinks',
+  'footerServiceLinks', 'footerAboutLinks', 'footerBottomLinks',
 ];
 
 async function syncSiteSettings() {
@@ -244,6 +245,28 @@ async function syncSiteSettings() {
     log(`Synced site settings (${Object.keys(settings).length} fields).`);
   } catch (error) {
     log(`Could not read site settings (${error.message}) - using the defaults.`);
+  }
+}
+
+/* ---------- pages ---------- */
+
+const PAGE_KEYS = ['title', 'subtitle', 'updated', 'sections', 'steps'];
+
+async function syncPages() {
+  try {
+    const documents = await fetchCollection('pages');
+    const pages = {};
+    for (const document of documents) {
+      const slug = document.name.split('/').pop();
+      const data = fromFields(document.fields ?? {});
+      const page = {};
+      for (const key of PAGE_KEYS) if (data[key] != null) page[key] = data[key];
+      pages[slug] = page;
+    }
+    await writeJson('data/pages.json', pages);
+    log(`Synced ${Object.keys(pages).length} edited page(s).`);
+  } catch (error) {
+    log(`Could not read pages (${error.message}) - using the original page text.`);
   }
 }
 
@@ -268,6 +291,7 @@ try {
     );
   }
   await syncSiteSettings();
+  await syncPages();
 } catch (error) {
   log(`Sync stopped (${error instanceof Error ? error.message : error}) - keeping the committed content.`);
 }
